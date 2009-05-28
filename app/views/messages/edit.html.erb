@@ -1,0 +1,32 @@
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr><td class="SingleColumn">
+	
+
+<div class="PageHeader">
+	<div class="PageHeaderLinks">
+		<%= link_to "Delete this message",proj_message_path(@proj,@message), :confirm => 'Are you sure?', :method => :delete%>
+	</div>
+<h4>Edit this message</h4>
+</div>
+<div class="PageContent">
+	<div class="NewMessage">
+		
+<% form_for(@message) do |f| %>
+  <%= f.error_messages %>
+	Title<br><%= f.text_field  :title,:value=>@message.title,:class=>"LargeTextBox" %><br><br>
+	Category &nbsp;<%=select("message", "category_id", Category.find(:all).collect {|p| [ p.name, p.id ] }, {:include_blank => 'No Category'})%><br><br>
+	
+	Message body<br>
+	<%= f.text_area :body, :value=>@message.body%>
+	
+	<%= f.hidden_field :user_id, :value => @user.id %>
+	<%= f.hidden_field :proj_id, :value => @proj.id %>
+  <p>
+    <%= f.submit 'Save Changes' %> or <%= link_to "Cancel", proj_messages_path(@proj) %>
+  </p>
+<% end %>
+</div>
+</div>
+</td>
+</tr>
+</table>

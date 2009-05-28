@@ -1,0 +1,30 @@
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr><td class="SingleColumn">
+	
+
+<div class="PageHeader">
+	<div class="PageHeaderLinks">
+		<%= link_to "Delete this to-do list",proj_todolist_path(@proj,@todolist), :confirm => 'Are you sure?', :method => :delete%>
+	</div>
+<h4>Edit this to-do list</h4>
+</div>
+<div class="PageContent">
+	<div class="Newtodolist">
+		
+<% form_for(@todolist) do |f| %>
+  <%= f.error_messages %>
+	Name<br><%= f.text_field  :name,:value=>@todolist.name,:class=>"LargeTextBox" %><br><br>
+	
+	
+	<%= f.hidden_field :proj_id, :value => @proj.id %>
+	<%= f.label "Description(optional)" %><br>
+<%=f.text_area :description,:value=>@todolist.description, :rows=>10,:cols =>5 %>
+  <p>
+    <%= f.submit 'Save Changes' %> or <%= link_to "Cancel", proj_todolists_path(@proj),:class=>"Standout" %>
+  </p>
+<% end %>
+</div>
+</div>
+</td>
+</tr>
+</table>

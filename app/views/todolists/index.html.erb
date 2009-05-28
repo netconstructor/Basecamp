@@ -1,0 +1,81 @@
+<%= javascript_include_tag 'jquery-sortable.js', :cache => true %>
+<%= javascript_include_tag 'basecamp/todolist', :cache => true %>
+
+
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr><td class="FirstColumn">
+	
+
+<div class="PageHeader">
+	<h4>To-do lists</h4>
+</div>
+
+<div class="PageContent">
+<%if @todolists.size==0%>
+<div class="BlankBar">
+    <h1>
+      <%= link_to "Create the first to-do list for this project", new_proj_todolist_path(@proj),:class=>"Standout" %>
+    </h1>
+    <p>Make lists, add items, and check them off. Get things done with to-do lists.</p>
+  </div>
+<% end %>
+<% @todolists.each do |todolist| %>
+	<h4 class="Todolist" id="Todolist_<%=todolist.id%>">
+		<span id="TodolistLinksSet_<%=todolist.id%>" class="TodolistLinksSet">
+			<%= link_to image_tag("trash.gif",:border=>0), proj_todolist_path(@proj,todolist), :confirm => 'Are you sure?', :method => :delete %>&nbsp;<%= link_to "edit", edit_proj_todolist_path(@proj,todolist),:class=>"Standout" %>
+		</span>
+		<%= link_to todolist.name, proj_todolist_path(@proj,todolist),:class=>"TodolistTitle" %>
+	</h4>
+	<div class="IncompleteTodos">
+		<%=	render :partial => "todolists/incompletetodos", :locals => { :todolist => todolist } %>
+	</div>
+		<div class="AddTodoDiv">
+			<div class="AddTodo" id="AddTodoLink_<%=todolist.id%>">
+				<%=link_to_function "Add an item", "AddTodo('"+todolist.id.to_s+"')",:class=>"Standout"%>
+			</div>
+			<div id="AddTodoForm_<%=todolist.id%>" class="AddTodoForm">
+	    		<% @todo=Todo.new
+				form_for(@todo) do |f| %>
+					Enter a to-do item <br>
+					<%=f.text_area :todo_text,:rows=>5,:cols=>5 %><br>
+					<%=f.hidden_field :proj_id, :value=> @proj.id %>
+					<%=f.hidden_field :todolist_id, :value=> todolist.id %><br>
+					Who's responsible?<br>
+					<%=select("todo", "user_id", @list_users.collect {|p| [ p.username, p.id ] })%><br><br>
+				    <%= f.submit 'Add this item' %> or <%= link_to_function "I'm done adding items", "HideAddTodoForm('"+todolist.id.to_s+"')",:class=>"Standout" %>
+				<% end %>
+			</div>
+		</div>
+		<div class="CompletedTodos">
+			<%=	render :partial => "todolists/completedtodos", :locals => { :todolist => todolist } %>
+		</div>
+<% end %>
+</div>
+
+
+</td>
+<td class="SecondColumn">
+	<%= link_to image_tag("new_to-do_list.gif",:border=>0), new_proj_todolist_path(@proj) %><br><br><br>
+	<div>
+		Current to-do lists
+		<ul>
+		<% @todolists.each do |todolist| %>
+		<% if !todolist.iscompleted %>
+		<li><%= link_to todolist.name, "#Todolist_"+todolist.id.to_s %></li>
+		<% end %>
+		<% end %>
+		</ul>
+	</div>
+	<div>
+		Completed to-do lists
+		<ul>
+		<% @todolists.each do |todolist| %>
+		<% if todolist.iscompleted %>
+		<li><%= link_to todolist.name, "#Todolist_"+todolist.id.to_s %></li>
+		<% end %>
+		<% end %>
+		</ul>
+	</div>
+</td>
+</tr>
+</table>

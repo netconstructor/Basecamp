@@ -1,0 +1,20 @@
+<center>
+	<div class="Login">
+		<%
+			form_for :activation, @activation, :url=>{:action => "activate"} do |f|
+		%>
+		<%= label_tag "Username"%><br>
+		<%= text_field_tag "user[username]"%><br>
+		<%= label_tag "Password"%><br>
+		<%= password_field_tag "user[password]"%><br>
+		<%= label_tag "Confirm Password"%><br>
+		<%= hidden_field_tag "activation[activation_number]", @activation.activation_number%>
+		<%= password_field_tag "confirm_password"%><br>
+		
+		<%= label_tag "Email Id"%>:<%=@activation.email_address %><br>
+		<br>
+		<%= submit_tag 'Activate' %>
+		
+		<%end%>
+	</div>
+</center>

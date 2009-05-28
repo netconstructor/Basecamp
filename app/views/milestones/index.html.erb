@@ -1,0 +1,72 @@
+
+<%= stylesheet_link_tag 'datePicker' %>
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr><td class="FirstColumn">
+	
+
+<div class="PageHeader">
+	<h4>Milestones(Today is <%=Date.today.to_s%> )</h4>
+</div>
+<div class="PageContent">
+	<div id="date-picker"></div>
+
+  <!-- here we will display selection information -->
+ 	<% if @milestones.size==0 %>
+	<div class="BlankBar">
+	      <h1><%= link_to "Create the first milestone for this project", new_proj_milestone_path(@proj),:class=>"Standout" %></h1>
+	      <p>Keep track of what's due, when it's due, and who's responsible for doing it.</p>
+	   </div>
+	<% end %>
+	<% if @milestones_late.size != 0 %>
+	<div>
+		<h1 class="LateMilestones">Late</h1>
+		<div>
+			<% @milestones_late.each do |milestone| %>
+		 		<div>
+					<b><%=Date.today- milestone.deadline%> days ago</b>(<%=milestone.deadline%>)&nbsp;<%=milestone.user.username%><br>
+					<%=milestone.name%><br>
+				</div><br>
+			<% end %>
+		</div>
+		
+	</div><br><br>
+	<%end%>
+	<% if @milestones_upcoming.size != 0 %>
+	<div >
+		<h1 class="UpcomingMilestones">Upcoming</h1>
+		<div>
+			<% @milestones_upcoming.each do |milestone| %>
+			<div>
+				<b><%= milestone.deadline - Date.today > 0 ? (milestone.deadline - Date.today).to_s+" days away" : "Today" %> </b>(<%=milestone.deadline%>)&nbsp;<%=milestone.user.username%><br>
+				<%=milestone.name%>
+			</div><br>
+		 		
+			<% end %>
+		</div>
+	</div><br><br>
+	<%end%>
+	<% if @milestones_completed.size != 0 %>
+	<div >
+		<h1 class="CompletedMilestones">Completed</h1>
+		<div>
+			<% @milestones_completed.each do |milestone| %>
+			<div>
+				<b><%=milestone.created_at%></b>&nbsp;<%=milestone.user.username%><br>
+				<%=milestone.name%>
+			</div><br>
+		 		
+			<% end %>
+		</div>
+		
+	</div>
+	<% end %>
+	
+	
+	
+</div>
+</td>
+<td class="SecondColumn">
+	<%= link_to image_tag("add_a_new_milestone.gif",:border=>0), new_proj_milestone_path(@proj) %>
+</td>
+</tr>
+</table>

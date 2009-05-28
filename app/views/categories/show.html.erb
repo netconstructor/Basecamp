@@ -1,0 +1,54 @@
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr><td class="FirstColumn">
+	
+
+<div class="PageHeader">
+<h4> Messages in '<%=@category.name%>'</h4>
+</div>
+<div class="PageContent">
+<% if @messages.size==0%>
+<div style="padding-bottom: 0pt;" class="Post">
+    <h1  class="BlankSlate">There are no posts in this category yet.<br/>
+    <%= link_to "Post the first message", new_proj_category_message_path(@proj,@category),:class=>"Standout" %></h1> 
+    
+  </div>
+<%end%>
+<% @messages.each do |message| %>
+<div>
+	<span class='Date'><%=message.created_at%></span><br><br>
+	
+	<h2><%= link_to message.title, proj_message_path(@proj,message), :class=>"Title" %></h2>
+	<div><%=message.body%></div>
+	<div>
+		<% if message.category_name =="no category" %>
+			posted by <%=message.user.username%> 
+		<% else %>
+			posted by <%=message.user.username%> in <%=message.category_name%>
+		<% end %>
+		<% if message.user.username==@user.username%>
+		<%= link_to "edit", edit_proj_message_path(@proj,message),:class=>"Standout"%>
+		<% end %>
+		<% if message.comments.size==0 %>
+			<%= link_to "Post the first comment", proj_message_path(@proj,message),:class=>"Black" %>
+		<%elsif message.comments.size==1 %>
+			<%= link_to message.comments.size.to_s+" comment", proj_message_path(@proj,message),:class=>"Black" %>
+		<% else %>
+			<%= link_to message.comments.size.to_s+" comments", proj_message_path(@proj,message),:class=>"Black" %>
+		<% end %>
+	</div><br><br>
+</div>
+<%end%>
+</div>
+</td>
+<td class="SecondColumn">
+	<%= link_to image_tag("post_a_new_message.gif",:border=>0), new_proj_message_path(@proj) %><br><br>
+	<h3 class="ListHeading">All Messages</h3>
+	<ul>
+		<% Category.all.each do |category|%>
+			<li><%=link_to category.name, proj_category_path(@proj,category)%></li>
+		<% end%>
+	</ul>
+</td>
+
+</tr>
+</table>

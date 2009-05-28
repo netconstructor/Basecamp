@@ -1,0 +1,12 @@
+<div>
+	<h3 class='ListHeading'>Your Projects</h3>
+	<ul>
+	<% projects.each do |project| %>
+	
+	<li>
+		<%= link_to project.name, :controller => "projs", :action => "show", :id => project.id %>
+	</li>
+	
+	<% end %>
+	</ul>
+</div>

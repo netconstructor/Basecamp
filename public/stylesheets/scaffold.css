@@ -1,0 +1,329 @@
+body {
+color:#222222;
+font-family:"Lucida Grande",verdana,arial,helvetica,sans-serif;
+/*text-align:center;*/
+margin:0;
+background-color:#dfdfdf;
+
+}
+table,td
+{
+	padding:0px;
+	margin:0px;
+}
+table
+{
+	width:100%;
+}
+#Header {
+
+/*background:#054700 none repeat scroll 0 0;*/
+background:#195d00 none repeat scroll 0 0;
+margin:0;
+padding:1px 0 0;
+position:relative;
+text-align:left;
+color:#ffffff;
+}
+.ListHeading
+{
+	background-color:#EDF3FE;
+	padding:5px 3px;
+}
+.PageHeader
+{
+	background-color:#edf3fe;
+	padding:1px 0px;
+	padding-left:10px;
+/*	width:100%;*/
+}
+#Header ul li a
+{
+	color:#3ea4cd;
+	text-decoration:none;
+}
+#Header ul li.selected a
+{
+	color:#000000;
+	text-decoration:none;
+	font-weight:bold;
+}
+#Header ul
+{
+	padding:5px;
+	padding-bottom:2px;
+/*	margin-bottom:2px;*/
+}
+#Header ul li 
+{
+	display:inline;
+	padding:3px;
+	margin:3px;
+	background-color:#217a00;
+	font-size:12px;
+	
+}
+#Header ul li.selected
+{
+	background-color:#dfdfdf;
+	
+}
+
+ p, ol, td {
+  font-family: verdana, arial, helvetica, sans-serif;
+  font-size:   13px;
+  line-height: 18px;
+}
+
+pre {
+  background-color: #eee;
+  padding: 10px;
+  font-size: 11px;
+}
+
+a { color: #000; }
+
+.Page a:hover {
+	background-color:#0033cc;
+	color:#ffffff;
+}
+.fieldWithErrors {
+  padding: 2px;
+  background-color: red;
+  display: table;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+label
+{
+	font-weight:bold;
+}
+.Login
+{
+	margin: 200px auto;
+	width:20%;
+	text-align:left;
+}
+input[type="text"]
+{
+	border:1px solid #000000;
+}
+
+.SingleColumn
+{
+	
+	background-color:#FFFFFF;
+	width:100%;
+}
+.FirstColumn
+{
+	background-color:#FFFFFF;
+	width:60%;
+	vertical-align:top;
+}
+.SecondColumn
+{
+	width:20%;
+	vertical-align:top;
+	padding:2%;
+}
+li
+{
+	list-style-type:none;
+}
+ul
+{
+	padding:0px;
+}
+.LargeTextBox
+{
+	width:90%;
+	padding:3px;
+	font-size:18px;
+}
+.Page
+{
+ margin:2% 5%;	
+}
+.PageContent
+{
+	padding:10px;
+}
+.TodoList
+{
+	border-top:1px #CCCCCC;
+}
+.NewMessage,.NewTodolist
+{
+	background-color:#dfdfdf;
+	width:80%;
+	padding:3%;
+}
+textarea
+{
+	width:90%;
+}
+span.Date
+{
+	font-size:12px;
+	padding: 2px 2px 2px 30px;
+	border-bottom:1px solid #CCCCCC;
+}
+a.Title
+{
+	text-decoration:none;
+}
+a.TodolistTitle
+{
+	text-decoration:underline;
+	color:#000000;
+}
+ a.TodolistTitle:hover
+{
+	text-decoration:underline;
+	color:#000000;
+	background-color:transparent;
+}
+ a.Title:hover
+{
+	text-decoration:underline;
+	color:#000000;
+	background-color:transparent;
+}
+.GreyText
+{
+	color:#CCCCCC;
+}
+.BorderedDiv
+{
+	border-top: 1px solid #CCCCCC;
+	border-bottom: 1px solid #CCCCCC;
+	padding:5px;
+}
+.HalfBorderedDiv
+{
+	border-bottom: 1px solid #CCCCCC;
+	padding:5px;
+}
+.PageHeaderLinks
+{
+	float:right;
+	padding:2%;
+}
+ul.Todos
+{
+	padding:3px;
+}
+.AddTodoForm,.EditTodoForm
+{
+	display:none;
+}
+.AddTodoDiv,.EditTodoForm
+{
+	background-color:#dfdfdf;
+	margin-left:5px;
+	padding:3px 5px;
+}
+.TodoLinksSet,.TodolistLinksSet
+{
+	display:none;
+	z-index:2;
+	margin-left:-59.4px;
+}
+.Avatar
+{
+	width:48px;
+}
+.BlankBar
+{
+	background-color:#FFFFCC;
+	border-bottom:1px solid orange;
+	border-top:1px solid orange;
+	margin-bottom:20px;
+	padding:10px;
+	text-align:center;
+}
+div.BlankBar h1 a:hover,a:hover.Standout 
+{
+	text-decoration:none;
+	background:#FF0000 none repeat scroll 0 0;
+	color:#FFFFFF
+}
+a.Standout
+{
+	color:#FF0000;
+}
+a.Black
+{
+	color:#000000;
+}
+a:hover.Black
+{
+	color:#FFFFFF;
+	background-color:#000000;
+	text-decoration:none;
+}
+h1.BlankSlate
+{
+	background:#FFFF66 none repeat scroll 0 0;
+	color:#000000;
+	margin-bottom:10px;
+	margin-left:-5px;
+	padding:5px;
+	line-height: 24px;
+	font-size:16px;
+}
+h1.LateMilestones 
+{
+	background-color:#CC0000;
+	border-bottom:1px solid #CC0000;
+	color:#FFFFFF;
+	font-size:10px;
+	padding:3px;
+}
+h1.CompletedMilestones {
+	background-color:#009900;
+	border-bottom:1px solid #009900;
+	color:#FFFFFF;
+	font-size:10px;
+	padding:3px;
+}
+h1.UpcomingMilestones
+{
+	background-color:#FFCC00;
+	border-bottom:1px solid #FFCC00;
+	color:#000000;
+	font-family:verdana;
+	font-size:10px;
+	margin:0;
+	padding:3px;
+	text-align:left;
+}

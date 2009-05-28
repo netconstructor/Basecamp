@@ -1,0 +1,18 @@
+<h1>Listing users_projs</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @users_projs.each do |users_projs| %>
+  <tr>
+    <td><%= link_to 'Show', users_projs %></td>
+    <td><%= link_to 'Edit', edit_users_projs_path(users_projs) %></td>
+    <td><%= link_to 'Destroy', users_projs, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New users_projs', new_users_projs_path %>

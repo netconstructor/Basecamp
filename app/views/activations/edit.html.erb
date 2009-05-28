@@ -1,0 +1,12 @@
+<h1>Editing activation</h1>
+
+<% form_for(@activation) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @activation %> |
+<%= link_to 'Back', activations_path %>

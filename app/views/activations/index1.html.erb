@@ -1,0 +1,18 @@
+<h1>Listing activations</h1>
+
+<table>
+  <tr>
+  </tr>
+
+<% @activations.each do |activation| %>
+  <tr>
+    <td><%= link_to 'Show', activation %></td>
+    <td><%= link_to 'Edit', edit_activation_path(activation) %></td>
+    <td><%= link_to 'Destroy', activation, :confirm => 'Are you sure?', :method => :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New activation', new_activation_path %>

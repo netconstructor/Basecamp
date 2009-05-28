@@ -1,0 +1,36 @@
+<div class="FirstColumn">
+</div>
+
+<div class="SecondColumn">
+<div>
+	<%= render :partial => "users/projects_list",:locals => {:projects=>@user.list_projects} %>
+</div>
+
+<% if @user.isadmin %>
+<div>
+	<% @proj=Proj.new
+		form_for(@proj) do |f| %>
+	  <%= f.error_messages %>
+		<p>
+			<%= f.label "Project Name"%><br>
+			<%= f.text_field :name %><br>
+		</p>
+	  <p>
+		<%= f.hidden_field :user_id ,:value=>@user.id %>
+	    <%= f.submit 'Create' %>
+	  </p>
+	<% end %>
+	 <br>
+	<% @activation=Activation.new
+	form_for :activation, @activation, :url => {:controller=>'activations', :action=>'create'} do |f|
+	
+	%>
+	<%= f.label "Email Address"%>
+	<%= f.text_field :email_address%>
+	<%= f.hidden_field :invitation_from_user, :value => @user.id%>
+	<%= submit_tag 'Invite user' %>
+	<% end%>
+	
+</div>
+<% end %>
+</div>

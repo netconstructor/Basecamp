@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= @PageTitle %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+  <%= javascript_include_tag 'jquery', :cache => true %>
+</head>
+<body>
+	<% if !session[:user].nil? %>
+	<div id="Header">
+		<div>
+			<%=link_to "Back to Dashboard", user_path(@user) %>
+		</div>
+		<h3> <%=@proj.name%></h3>
+		<ul id="HeaderNavigation">
+			<li <%= @current=="overview" ? "class='selected'" : "" %> >
+					<%=link_to "Overview",  user_proj_path(@user,@proj) %>
+			</li>
+			<li <%= @current=="messages" ? "class='selected'" : "" %>><%=link_to "Messages",proj_messages_path(@proj) %></li>
+			<li <%= @current=="todos" ? "class='selected'" : "" %>><%=link_to "To-Dos",proj_todolists_path(@proj) %></li>
+			<li <%= @current=="milestones" ? "class='selected'" : "" %>><%=link_to "Milestones",proj_milestones_path(@proj) %></li>
+		</ul>
+	</div>
+	<% end %>
+<p style="color: green"><%= flash[:notice] %></p>
+<div class="Page">
+<%= yield %>
+</div>
+</body>
+</html>

@@ -1,0 +1,44 @@
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr><td class="FirstColumn">
+	
+
+<div class="PageHeader">
+<h4><%=link_to "<< All messages", proj_messages_path(@proj)%></h4>
+</div>
+<div class="PageContent">
+	<h2><%= @message.title %></h2>
+	<span class="GreyText">From:</span><%= @message.user.username %><br>
+	<span class="GreyText">Date:</span><%= @message.created_at %><br>
+	<span class="GreyText">Category:</span><%= @message.category_name %><br><br>
+	
+	<div class="BorderedDiv">
+		<%= @message.body %>
+	</div>
+	<% @message.comments.each do |comment|%>
+	<div class="HalfBorderedDiv">
+		<table border="0">
+			<tr><td class="Avatar"><%=image_tag "person_avatar.gif"%></td><td><strong><%=comment.user.username%></strong>&nbsp;<%=comment.created_at%><br>
+			<%=comment.comment_text%></td></tr>
+		</table>
+		
+	
+	</div>
+	<% end %>
+	<div>
+		<% @comment=Comment.new
+		form_for(@comment) do |f| %>
+		  <%= f.error_messages %>
+			Leave a comment<br>
+			<%= f.text_area :comment_text,:rows=>10,:cols=>6 %>
+			<%= f.hidden_field :message_id,:value=>@message.id %>
+			<%= f.hidden_field :user_id,:value=>@user.id %>
+			<%= f.hidden_field :todo_id,:value=>0 %>
+		  <p>
+		    <%= f.submit 'Add this Comment' %>
+		  </p>
+		<% end %>
+	</div>
+</div>
+</td>
+</tr>
+</table>

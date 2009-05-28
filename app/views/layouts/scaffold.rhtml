@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+       "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
+  <title><%= @PageTitle %></title>
+  <%= stylesheet_link_tag 'scaffold' %>
+</head>
+<body>
+	<% if !session[:user].nil? %>
+	<div id="Header">
+		<h3>Welcome <%=@user.username%></h3>
+		<ul id="HeaderNavigation">
+			<li <%= @current=="dashboard" ? "class='selected'" : "" %> >
+					<%=link_to "Dashboard",  {:controller => "users", :action => "show"} %>
+			</li>
+			<li <%= @current=="todos" ? "class='selected'" : "" %>><%=link_to "To-Dos",{:controller => "todo_list", :action => "index"} %></li>
+		</ul>
+	</div>
+	<% end %>
+<p style="color: green"><%= flash[:notice] %></p>
+<div class="Page">
+<%= yield %>
+</div>
+</body>
+</html>

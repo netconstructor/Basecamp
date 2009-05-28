@@ -1,0 +1,29 @@
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="SingleColumn">
+			<div class="PageHeader">
+				<h4>
+					<%=@user.username %>'s to-do items across all projects
+				</h4>
+			</div>
+			<div class="PageContent">
+				<% @projects.each do |project|%>
+					<div class="TodoList">
+						<h4><%= link_to project.name, proj_path(project)%></h4>
+						<% project.todolists.each do |todolist|%>
+						<table border="0" class="TodolistTable">
+							<tr>
+								<td><%=todolist.name%></td>
+								<td></td>
+							</tr>
+						</table>
+						<%end%>
+					</div>
+				<%end%>
+			</div>
+		</div> 
+</td>
+</tr>
+</table>   
+
+ 

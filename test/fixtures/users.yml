@@ -1,0 +1,19 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+bob:
+  id: 1
+  username: bob
+  password: 9a91e1d8d95b6315991a88121bb0aa9f03ba0dfc # test
+  email_address: somehting 
+  
+existingbob:
+  id: 1000002
+  username: bob
+  password: 9a91e1d8d95b6315991a88121bb0aa9f03ba0dfc # test
+  email_address: somehting
+  
+longbob:
+  id: 1000003
+  username: bob
+  password: 9a91e1d8d95b6315991a88121bb0aa9f03ba0dfc # test
+  email_address: somehting

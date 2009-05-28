@@ -1,0 +1,29 @@
+<ul class="Todos ">
+	<% todolist.incomplete_todos.each do |todo| %>
+		<li class="TodoLi" id="TodoLi_<%= todo.id %>">
+			<div id="Todo_<%= todo.id %>" class="Todo">
+				<span id="TodoLinksSet_<%= todo.id %>" class="TodoLinksSet">
+				<%= link_to image_tag("trash.gif",:border=>0), todolist_todo_path(todolist,todo), :confirm => 'Are you sure?', :method => :delete %>&nbsp;
+				<%= link_to_function "edit", "EditTodo('"+todo.id.to_s+"')",:class=>"Standout" %>&nbsp;<%= image_tag "drag_handle.gif", :class=>"handle"%></span>&nbsp;
+				
+				<%= check_box_tag 'TodoCheckBox_'+todo.id.to_s %>
+				<b><%=todo.user.username%>:</b>&nbsp;
+				<%=todo.todo_text%>
+			</div>
+				
+			<div id="EditTodoForm_<%=todo.id%>" class="EditTodoForm">
+	    		<% 
+				form_for(todo) do |f| %>
+					
+					<%=f.text_area :todo_text,:value=>todo.todo_text,:rows=>5,:cols=>5 %><br>
+					<%=f.hidden_field :proj_id, :value=> @proj.id %>
+					<%=f.hidden_field :todolist_id, :value=> todolist.id %><br>
+					Who's responsible?<br>
+					<%=select("todo", "user_id", @list_users.collect {|p| [ p.username, p.id ] })%><br><br>
+				    <%= f.submit 'Save this item' %> or <%= link_to_function "Cancel", "HideEditTodoForm('"+todo.id.to_s+"')",:class=>"Standout" %>
+				<% end %>
+			</div>
+			
+		</li>
+	<% end %>
+</ul>

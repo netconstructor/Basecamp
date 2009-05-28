@@ -1,0 +1,55 @@
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr><td class="FirstColumn">
+		<div class="PageHeader">
+			<div class="PageHeaderLinks">
+				<%= link_to "New message", new_proj_message_path(@proj),:class=>"Standout" %>&nbsp; | &nbsp;
+				<%= link_to "New to-do list", new_proj_todolist_path(@proj),:class=>"Standout" %>
+			</div>
+		  <h4>
+		    Project overview & activity
+		  </h4>
+		</div>
+	<div class="PageContent">
+		<% @proj.todolists.each do |todolist| %>
+			<h4><%=todolist.name%></h4>
+			<ul>
+				<% todolist.todos.each do |todo| %>
+					<li><%=todo.user.username%>:&nbsp;<%=todo.todo_text%></li>
+				<% end %>
+			</ul>
+			
+			<h4>Completed todos</h4>
+		<% end %>
+	</div>
+	
+</td>
+<td class="SecondColumn">
+	<h3 class="ListHeading">People on this project</h3>
+
+	<ul>
+		<% @proj.members_list.each do |member|%>
+			<li>	<%=member.username%> </li>
+			<% end %>
+	</ul>
+	<% if @user.isadmin %>
+      <% if @proj_non_users.size!=0 %>		
+		<% @users_proj=UsersProj.new
+		form_for :users_projs, @users_proj, :url => {:controller=>'users_projs', :action=>'create'} do |f|
+
+		%>
+		<%= f.hidden_field :proj_id, :value => @proj.id%>
+		add 
+		<select name="users_projs[user_id]">
+		<% @proj_non_users.each do |user|%>
+		<option value='<%=user.id%>'><%=user.username%></option>
+		<% end %>	
+		</select>
+		to this project
+	
+	<%= f.submit 'Submit' %>
+	<% end%>
+	<% end %>
+	<%end%>
+</td>
+</tr>
+</table>

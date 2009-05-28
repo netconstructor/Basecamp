@@ -1,0 +1,25 @@
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr><td class="SingleColumn">
+	
+
+<div class="PageHeader">
+	<h4>New todolist</h4>
+</div>
+
+<div class="PageContent">
+<% form_for(@todolist) do |f| %>
+  <%= f.error_messages %>
+
+	<%= f.label "First give the list a name (eg. 'Things for the meeting')" %><br><%= f.text_field  :name,:class=>"LargeTextBox" %><br><br>
+		<%= f.label "Description(optional)" %><br>
+	<%=f.text_area :description, :rows=>10,:cols =>5 %>
+	<%= f.hidden_field :proj_id, :value => @proj.id %>
+	<%= hidden_field_tag "proj_id", @proj.id %>
+  <p>
+    <%= f.submit 'Create this list' %> or <%= link_to "cancel", proj_todolists_path(@proj),:class=>"Standout" %>
+  </p>
+<% end %>
+</div>
+</td>
+</tr>
+</table>

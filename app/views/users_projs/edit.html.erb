@@ -1,0 +1,12 @@
+<h1>Editing users_projs</h1>
+
+<% form_for(@users_projs) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @users_projs %> |
+<%= link_to 'Back', users_projs_path %>

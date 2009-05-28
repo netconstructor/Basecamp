@@ -1,0 +1,51 @@
+<%= javascript_include_tag 'ui.core' %>
+<%= javascript_include_tag 'jquery.datePicker' %>
+<%= javascript_include_tag 'basecamp/milestones' %>
+
+<%= stylesheet_link_tag 'datePicker' %>
+<%= stylesheet_link_tag 'ui.theme' %>
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr><td class="FirstColumn">
+	
+
+<div class="PageHeader">
+	<h4>Milestones(Today is <%=Date.today.to_s%> )</h4>
+</div>
+<div class="PageContent">
+	<table border="0">
+		<tr>
+			<td>
+				<div type="text" id="datepicker"></div>
+				
+				<div id="MilestoneDate">
+					
+				</div>
+			</td>
+			<td>
+				<% form_for(@milestone) do |f| %>
+				  <%= f.error_messages %>
+					Enter a title<br>
+					<%= f.text_field :name,:class=>"LargeTextBox" %><br><br>
+					who is responsible?<br>
+					<%= select("milestone","user_id",@proj.members_list.collect{|p|[p.username,p.id]})%>
+					<%= f.hidden_field :user_id, :value=>@user.id %>
+					<%= f.hidden_field :deadline %>
+					<%= f.hidden_field :proj_id, :value=>@proj.id %>
+				  <p>
+				    <%= f.submit 'Create a milestone' %> or <%= link_to "Cancel", proj_milestones_path(@proj),:class=>"Standout"%>
+				  </p>
+				<% end %>
+			</td>
+		</tr>
+	</table>
+	
+
+  <!-- here we will display selection information -->
+ 
+	
+	
+	
+</div>
+</td>
+</tr>
+</table>

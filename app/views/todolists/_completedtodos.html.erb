@@ -1,0 +1,10 @@
+<ul class="Todos ">
+	<% todolist.completed_todos.each do |todo| %>
+		<li>
+				<%= link_to image_tag("trash.gif",:border=>0), todolist_todo_path(todolist,todo), :confirm => 'Are you sure?', :method => :delete %>&nbsp;
+				<%= check_box_tag 'TodoCheckBox_'+todo.id.to_s,true %>&nbsp;<%=todo.updated_at%>
+				<b><%=todo.user.username%>:</b>&nbsp;
+				<%=todo.todo_text%>
+		</li>
+	<% end %>
+</ul>
