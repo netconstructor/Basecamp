@@ -2,8 +2,12 @@ class Todo < ActiveRecord::Base
   include AASM
   belongs_to :proj
   belongs_to :user
+  belongs_to :todolist
   
-  default_scope :deleted => false
+  named_scope :completed_todo, :conditions => {:completed => "completed"}
+  named_scope :incomplete_todo, :conditions => {:completed => "not_completed"}
+  
+  
   
   
   validates_presence_of :proj_id
@@ -21,7 +25,11 @@ class Todo < ActiveRecord::Base
     transitions :to => :completed, :from => [:not_completed]
   end
   
-  aasm_event :not_completed do
+  aasm_event :setnotcompleted do
     transitions :to => :not_completed, :from => [:completed]
   end
+  
+  protected
+  
+  
 end

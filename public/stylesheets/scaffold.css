@@ -327,3 +327,53 @@ h1.UpcomingMilestones
 	padding:3px;
 	text-align:left;
 }
+div.LateMilestones
+{
+	border: 1px solid #dfdfdf;
+}
+.LateMilestones div,.ProjectHeader
+{
+	background-color:#dfdfdf;
+	padding: 3px 5px;
+}
+.TodolistNameColumn
+{
+	background-color:#dfdfdf;
+	text-align:right;
+	vertical-align:top;
+	
+	
+}
+.TodolistTable td
+{
+	padding:5px;
+}
+.TodolistTable
+{
+	border-top: 1px solid #dfdfdf;
+	
+}
+.TopHeaderLinks
+{
+	padding:10px;
+	clear:both;
+}
+.TopHeaderLeftLinks
+{
+	float:left;
+}
+.TopHeaderRightLinks
+{
+	float:right;
+}
+.TopHeaderLeftLinks a,.TopHeaderRightLinks a
+{
+	font-size:12px;
+	color:#FFFFFF;
+}
+.TopHeaderLeftLinks a:hover,.TopHeaderRightLinks a:hover
+{
+	font-size:12px;
+	text-decoration:none;
+	color:#FFFFFF;
+}

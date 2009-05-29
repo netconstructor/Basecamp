@@ -3,6 +3,9 @@ class Milestone < ActiveRecord::Base
   belongs_to :user
   
   validates_presence_of :deadline
+  validates_presence_of :name
+  validates_presence_of :user_id
+  validates_presence_of :proj_id
   
   def self.list_of_completed
     return Milestone.find(:all,:conditions=>{:completed=>"completed"})

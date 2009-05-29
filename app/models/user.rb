@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :projs
   has_many :todolists
   has_many :messages
+  has_many :milestones
   has_many :comments
   has_one :activation
   belongs_to :department

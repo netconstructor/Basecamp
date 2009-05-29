@@ -28,7 +28,6 @@
 					<%= f.text_field :name,:class=>"LargeTextBox" %><br><br>
 					who is responsible?<br>
 					<%= select("milestone","user_id",@proj.members_list.collect{|p|[p.username,p.id]})%>
-					<%= f.hidden_field :user_id, :value=>@user.id %>
 					<%= f.hidden_field :deadline %>
 					<%= f.hidden_field :proj_id, :value=>@proj.id %>
 				  <p>

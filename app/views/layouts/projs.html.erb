@@ -11,8 +11,15 @@
 <body>
 	<% if !session[:user].nil? %>
 	<div id="Header">
-		<div>
-			<%=link_to "Back to Dashboard", user_path(@user) %>
+		
+		<div class="TopHeaderLinks">
+			<div class="TopHeaderLeftLinks">
+				<%=link_to "Back to Dashboard", user_path(@user) %>
+			</div>
+			<div class="TopHeaderRightLinks">
+				<%=link_to "Log-out","/logout" %>
+			</div>
+			
 		</div>
 		<h3> <%=@proj.name%></h3>
 		<ul id="HeaderNavigation">

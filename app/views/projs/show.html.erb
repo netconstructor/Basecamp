@@ -10,16 +10,10 @@
 		  </h4>
 		</div>
 	<div class="PageContent">
-		<% @proj.todolists.each do |todolist| %>
-			<h4><%=todolist.name%></h4>
-			<ul>
-				<% todolist.todos.each do |todo| %>
-					<li><%=todo.user.username%>:&nbsp;<%=todo.todo_text%></li>
-				<% end %>
-			</ul>
-			
-			<h4>Completed todos</h4>
-		<% end %>
+		<%=@items.inspect%>
+		<table border="0" cellspacing="5" cellpadding="5">
+		
+		</table>
 	</div>
 	
 </td>

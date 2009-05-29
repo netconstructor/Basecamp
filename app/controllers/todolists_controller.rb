@@ -1,13 +1,14 @@
 class TodolistsController < ApplicationController
   # GET /todolists
   # GET /todolists.xml
+  
   layout 'projs'
   def index
     @list_users = User.list_of_users
     @proj=Proj.find(params[:proj_id])
     @todolists = @proj.todolists.all
     @current="todos"
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @todolists }
@@ -21,7 +22,7 @@ class TodolistsController < ApplicationController
     @todolist = Todolist.find(params[:id])
     @proj=Proj.find(params[:proj_id])
     @current="todos"
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @todolist }
@@ -34,7 +35,7 @@ class TodolistsController < ApplicationController
     @todolist = Todolist.new
     @proj=Proj.find(params[:proj_id])
     @current="todos"
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @todolist }
@@ -45,7 +46,7 @@ class TodolistsController < ApplicationController
   def edit
     @proj=Proj.find(params[:proj_id])
     @current="todos"
-    @user=session[:user]
+    @user=User.find(session[:user])
     @todolist = Todolist.find(params[:id])
   end
 
@@ -54,7 +55,7 @@ class TodolistsController < ApplicationController
   def create
     @todolist = Todolist.new(params[:todolist])
     @proj=Proj.find(params[:proj_id])
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       if @todolist.save
         flash[:notice] = 'Todolist was successfully created.'
@@ -72,7 +73,7 @@ class TodolistsController < ApplicationController
   def update
     @todolist = Todolist.find(params[:id])
     @proj=@todolist.proj
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       if @todolist.update_attributes(params[:todolist])
         flash[:notice] = 'Todolist was successfully updated.'
@@ -92,8 +93,19 @@ class TodolistsController < ApplicationController
     @todolist.destroy
 
     respond_to do |format|
-      format.html { redirect_to() }
+      format.html { redirect_to(proj_todolists_path(@todolist.proj)) }
       format.xml  { head :ok }
+    end
+  end
+  private
+  def check_login
+    if !session[:user].nil? && session[:user]!=0
+      redirect_to :action => "show" ,:controller => "users"
+    end
+  end
+  def logged_out_user
+    if session[:user].nil? || session[:user]==0
+      redirect_to :action => "index", :controller => "users"
     end
   end
 end

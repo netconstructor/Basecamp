@@ -16,7 +16,7 @@ class UsersController < ApplicationController
   # GET /users/1
   # GET /users/1.xml
   def show
-    @user = session[:user]
+    @user = User.find(session[:user])
     @current="dashboard"
     @PageTitle="Dashboard - "+@user.username
     respond_to do |format|
@@ -27,7 +27,7 @@ class UsersController < ApplicationController
   
   def todo_list
     @current="todos"
-    @user = session[:user]
+    @user = User.find(session[:user])
     @PageTitle="To-Dos - "+@user.username
     @projects=@user.list_projects
     
@@ -39,13 +39,18 @@ class UsersController < ApplicationController
   
   def login
     @credentials=params[:user]
-    if session[:user] = User.authenticate(@credentials[:username],@credentials[:password])
+    if session[:user] = User.authenticate(@credentials[:username],@credentials[:password]).id
       redirect_to :action => "show"
       flash[:notice] =="logged in"
     else
       flash[:notice] =="logged out"
     end
     
+  end
+  
+  def logout
+    session[:user]=0
+    redirect_to :action => "index"
   end
 
   # GET /users/new
@@ -113,12 +118,12 @@ class UsersController < ApplicationController
   
   private
   def check_login
-    if !session[:user].nil?
+    if !session[:user].nil? && session[:user]!=0
       redirect_to :action => "show"
     end
   end
   def logged_out_user
-    if session[:user].nil?
+    if !session[:user].nil? || session[:user]==0
       redirect_to :action => "index"
     end
   end

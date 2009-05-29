@@ -1,10 +1,13 @@
 class TodosController < ApplicationController
   # GET /todos
   # GET /todos.xml
+  
+  
+  
   layout 'scaffold'
   def index
     @todos = Todo.all
-    @user = session[:user]
+    @user = User.find(session[:user])
     @current="todos"
     respond_to do |format|
       format.html # index.html.erb
@@ -63,7 +66,7 @@ class TodosController < ApplicationController
     @todo = Todo.find(params[:id])
     parameters=params[:todo]
     @proj=Proj.find(parameters[:proj_id])
-    @user = session[:user]
+    @user = User.find(session[:user])
     respond_to do |format|
       if @todo.update_attributes(params[:todo])
         flash[:notice] = 'Todo was successfully updated.'
@@ -76,6 +79,38 @@ class TodosController < ApplicationController
     end
   end
 
+  def complete
+    @todo = Todo.find(params[:id])
+    @todo.setcompleted
+    @proj=@todo.todolist.proj
+    @user = User.find(session[:user])
+    respond_to do |format|
+      if @todo.update_attributes(params[:todo])
+        flash[:notice] = 'Todo was successfully updated.'
+        format.html { redirect_to(proj_todolists_path(@proj)) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @todo.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
+  def incomplete
+    @todo = Todo.find(params[:id])
+    @todo.setnotcompleted
+    @proj=@todo.todolist.proj
+    @user = User.find(session[:user])
+    respond_to do |format|
+      if @todo.update_attributes(params[:todo])
+        flash[:notice] = 'Todo was successfully updated.'
+        format.html { redirect_to(proj_todolists_path(@proj)) }
+        format.xml  { head :ok }
+      else
+        format.html { render :action => "edit" }
+        format.xml  { render :xml => @todo.errors, :status => :unprocessable_entity }
+      end
+    end
+  end
   # DELETE /todos/1
   # DELETE /todos/1.xml
   def destroy
@@ -89,4 +124,19 @@ class TodosController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  
+  private
+  def check_login
+    if !session[:user].nil? && session[:user]!=0
+      redirect_to :action => "show" ,:controller => "users"
+    end
+  end
+  def logged_out_user
+    if session[:user].nil? || session[:user]==0
+      redirect_to :action => "index", :controller => "users"
+    end
+  end
+  
+  
 end

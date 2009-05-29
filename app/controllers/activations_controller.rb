@@ -79,7 +79,7 @@ class ActivationsController < ApplicationController
           @activation.active
           @activation.save!
         end  
-        session[:user] = @user
+        session[:user] = @user.id
         redirect_to :controller => "users", :action=> "index" 
     else
         

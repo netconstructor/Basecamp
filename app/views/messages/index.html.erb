@@ -6,6 +6,12 @@
 <h4> All Messages</h4>
 </div>
 <div class="PageContent">
+<% if @messages.size==0%>
+<div class="BlankBar">
+    <h1><%= link_to "Post the first message for this project", new_proj_message_path(@proj),:class=>"Standout" %></h1>
+    <p>Post messages, share project updates, ask questions, communicate.</p>
+  </div>
+<% end %>
 <% @messages.each do |message| %>
 <div>
 	<span class='Date'><%=message.created_at%></span><br><br>

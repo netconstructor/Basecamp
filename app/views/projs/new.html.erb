@@ -1,13 +1,25 @@
-<% form_for(@proj) do |f| %>
-  <%= f.error_messages %>
-	<p>
-		<%= f.label "Project Name"%><br>
-		<%= f.text_field :name %><br>
-	</p>
-  <p>
-	<%= f.hidden_field :user_id ,:value=>@user.id %>
-    <%= f.submit 'Create' %>
-  </p>
-<% end %>
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr><td class="SingleColumn">
+		<div class="PageHeader">
+			Create a new project
+		</div>
+		<div class="PageContent">
+			<% @proj=Proj.new
+			@user = User.find(session[:user]) 
+			form_for(@proj) do |f| %>
+			  <%= f.error_messages %>
+				<p>
+					<%= f.label "Name the project"%><br>
+					<%= f.text_field :name %><br>
+				</p>
+			  <p>
+				<%= f.hidden_field :user_id ,:value=>@user.id %>
+			    <%= f.submit 'Create this project' %> 
+			  </p>
+			<% end %>
+		</div>
+		</td>
+		
+		</tr>
+	</table>
 
-<%= link_to 'Back', projs_path %>

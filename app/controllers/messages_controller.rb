@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     @proj=Proj.find(params[:proj_id])
     @messages = @proj.messages.all
     @current="messages"
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @messages }
@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @proj=Proj.find(params[:proj_id])
     @current="messages"
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @message }

@@ -1,6 +1,7 @@
 class ActiveRecord::Base
+  default_scope :conditions => { :removed => false}
   def destroy
-    self.deleted=true
+    self.removed=true
     self.save
   end
 end

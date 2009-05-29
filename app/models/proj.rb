@@ -1,7 +1,9 @@
+
 class Proj < ActiveRecord::Base
 
   has_many :messages
   has_many :todolists
+  has_many :todos
   belongs_to :user
   has_many :users_projs
   has_many :milestones
@@ -13,6 +15,23 @@ class Proj < ActiveRecord::Base
   
   def owner_exists
     errors.add(:user_id, "user with such id doesnt exist") if  (!User.find(self.user_id))
+  end
+  
+  def self.items
+    items=[]
+    Proj.list_todos.each do |todo|
+      temp_obj=Item.new(:id=>todo.id)
+      items << temp_obj
+    end
+    return items
+  end
+  
+  def list_todos
+    todos=[]
+    self.todolists.each do |todolist|
+      todos + todolist.todos
+    end
+    return todos
   end
   
   def owner_is_an_admin

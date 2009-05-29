@@ -3,7 +3,7 @@ class ProjsController < ApplicationController
   # GET /projs.xml
   def index
     @projs = Proj.all
-
+    @items =Proj.items
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @projs }
@@ -11,13 +11,13 @@ class ProjsController < ApplicationController
   end
 
   # GET /projs/1
-  # GET /projs/1.xml
+  # GET /projs/1.xmlUser.find(User.find(session[:user]))
   def show
     @current="overview"
     @proj = Proj.find(params[:id])
     @proj_non_users=User.list_of_users_not_in_proj(@proj)
     @list_users = User.list_of_users
-    @user = session[:user]
+    @user = User.find(session[:user])
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @proj }
@@ -31,12 +31,14 @@ class ProjsController < ApplicationController
   # GET /projs/new
   # GET /projs/new.xml
   def new
+    render :layout => 'scaffold'
     @proj = Proj.new()
-    @user = session[:user] 
-    respond_to do |format|
-      format.html # new.html.erb
-      format.xml  { render :xml => @proj }
-    end
+    @user = User.find(session[:user]) 
+    
+    # respond_to do |format|
+      # format.html  #new.html.erb
+      # format.xml  { render :xml => @proj }
+    # end
   end
 
   # GET /projs/1/edit
@@ -91,4 +93,8 @@ class ProjsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+  
+  
+  
+  
 end

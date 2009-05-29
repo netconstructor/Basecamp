@@ -1,36 +1,74 @@
-<div class="FirstColumn">
-</div>
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="FirstColumn">
+			<div class="PageHeader">
+				<h4>
+					Latest activity across your projects
+				</h4>
+			</div>
+			<div class="PageContent">
+				<% if  @user.milestones.list_of_already_late.size != 0 %>
+				<div class="LateMilestones">
+					<div>
+						Late Milestones
+					</div>
+					<ul>
+						<% @user.milestones.list_of_already_late.each do |milestone| %>
+							<li><b><%=Date.today- milestone.deadline%> days late</b>:[ <%=milestone.proj.name%> | <%=milestone.user.username%>]</li>
+						<% end %>
+					</ul>
+				</div><br><br>
+				<% end %>
+				<% @user.list_projects.each do |proj| %>
+					<div>
+						<div class="ProjectHeader">
+							<%=proj.name%>
+						</div>
+						<div>
+							<ul>
+							<% proj.list_todos.each do |todo| %>
+								<li><%= todo.inpsect %></li>
+							<% end %>
+							</ul>
+						</div>
+					</div><br>
+					
+					
+				<% end  %>
+			</div>
+			
+		</td>
+		<td class="SecondColumn">
+			<div>
+				<%= render :partial => "users/projects_list",:locals => {:projects=>@user.list_projects} %>
+			</div>
 
-<div class="SecondColumn">
-<div>
-	<%= render :partial => "users/projects_list",:locals => {:projects=>@user.list_projects} %>
-</div>
+			<% if @user.isadmin %>
+			<%= link_to image_tag("new_project.gif",:border=>0), new_proj_path %><br>
+				<div>
+					<% @proj=Proj.new
+					form_for(@proj) do |f| %>
+		  				<%= f.error_messages %>
+						<p>
+							<%= f.label "Project Name"%><br>
+							<%= f.text_field :name %><br>
+						</p>
+		  				<p>
+							<%= f.hidden_field :user_id ,:value=>@user.id %>
+		    				<%= f.submit 'Create' %>
+		  				</p>
+					<% end %>
+		 			<br>
+					<% @activation=Activation.new
+						form_for :activation, @activation, :url => {:controller=>'activations', :action=>'create'} do |f| %>
+						<%= f.label "Email Address"%>
+						<%= f.text_field :email_address%>
+						<%= f.hidden_field :invitation_from_user, :value => @user.id%>
+						<%= submit_tag 'Invite user' %>
+					<% end%>
 
-<% if @user.isadmin %>
-<div>
-	<% @proj=Proj.new
-		form_for(@proj) do |f| %>
-	  <%= f.error_messages %>
-		<p>
-			<%= f.label "Project Name"%><br>
-			<%= f.text_field :name %><br>
-		</p>
-	  <p>
-		<%= f.hidden_field :user_id ,:value=>@user.id %>
-	    <%= f.submit 'Create' %>
-	  </p>
-	<% end %>
-	 <br>
-	<% @activation=Activation.new
-	form_for :activation, @activation, :url => {:controller=>'activations', :action=>'create'} do |f|
-	
-	%>
-	<%= f.label "Email Address"%>
-	<%= f.text_field :email_address%>
-	<%= f.hidden_field :invitation_from_user, :value => @user.id%>
-	<%= submit_tag 'Invite user' %>
-	<% end%>
-	
-</div>
-<% end %>
-</div>
+				</div>
+			<% end %>
+		</td>
+	</tr>
+</table>

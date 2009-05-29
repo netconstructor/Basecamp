@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090527122903) do
+ActiveRecord::Schema.define(:version => 20090528104508) do
 
   create_table "activations", :force => true do |t|
     t.integer  "user_id"
@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.datetime "updated_at"
     t.string   "email_address"
     t.integer  "invitation_from_user"
-    t.boolean  "deleted",              :default => false
+    t.boolean  "removed",              :default => false
   end
 
   create_table "attachments", :force => true do |t|
@@ -29,13 +29,14 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.string   "size_attachment"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted",         :default => false
+    t.boolean  "removed",         :default => false
   end
 
   create_table "categories", :force => true do |t|
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "removed",    :default => false
   end
 
   create_table "comments", :force => true do |t|
@@ -44,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.text     "comment_text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted",      :default => false
     t.integer  "user_id"
+    t.boolean  "removed",      :default => false
   end
 
   create_table "departments", :force => true do |t|
@@ -53,7 +54,7 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted",    :default => false
+    t.boolean  "removed",    :default => false
   end
 
   create_table "messages", :force => true do |t|
@@ -63,19 +64,19 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "body"
-    t.boolean  "deleted",     :default => false
     t.integer  "category_id"
+    t.boolean  "removed",     :default => false
   end
 
   create_table "milestones", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted",    :default => false
     t.string   "name"
     t.integer  "user_id"
     t.integer  "proj_id"
     t.date     "deadline"
     t.string   "completed",  :default => "not_completed"
+    t.boolean  "removed",    :default => false
   end
 
   create_table "projs", :force => true do |t|
@@ -83,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted",    :default => false
+    t.boolean  "removed",    :default => false
   end
 
   create_table "roles", :force => true do |t|
@@ -106,8 +107,8 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted",     :default => false
     t.text     "description"
+    t.boolean  "removed",     :default => false
   end
 
   create_table "todos", :force => true do |t|
@@ -117,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "todolist_id"
-    t.boolean  "deleted",     :default => false
     t.string   "completed",   :default => "not_completed"
+    t.boolean  "removed",     :default => false
   end
 
   create_table "users", :force => true do |t|
@@ -128,7 +129,7 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.string   "admin"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "deleted",       :default => false
+    t.boolean  "removed",       :default => false
   end
 
   create_table "users_projs", :force => true do |t|
@@ -136,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20090527122903) do
     t.integer  "proj_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "removed",    :default => false
   end
 
 end

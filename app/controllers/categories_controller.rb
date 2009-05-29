@@ -16,7 +16,7 @@ class CategoriesController < ApplicationController
   def show
     @category = Category.find(params[:id])
     @messages=@category.messages.find(:all,:conditions=>{:proj_id=>params[:proj_id]})
-    @user = session[:user]
+    @user = User.find(session[:user])
     @proj = Proj.find(params[:proj_id])
     respond_to do |format|
       format.html # show.html.erb

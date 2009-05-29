@@ -2,6 +2,8 @@ class Todolist < ActiveRecord::Base
   belongs_to :proj
   has_many :todos
   
+  default_scope :conditions => { :removed => false}
+  
   def iscompleted
     if self.todos.size!=0 && (self.todos.size == self.todos.count(:conditions=>{:completed=>"completed"}))
       return true
@@ -11,10 +13,10 @@ class Todolist < ActiveRecord::Base
   end
   
   def completed_todos
-    return self.todos.find(:all,:conditions=>{:completed=>"completed"})
+    return self.todos.completed_todo
   end
   def incomplete_todos
-    return self.todos.find(:all,:conditions=>{:completed=>"not_completed"})
+    return self.todos.incomplete_todo
   end
   
 end
