@@ -88,6 +88,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "users" ,:action => "index"
   map.connect 'invalid_activation', :controller => "activations" ,:action => "invalid_activation"
   map.connect 'todo_list', :controller => "users" ,:action => "todo_list"
+  map.connect 'allmilestones', :controller => "users" ,:action => "milestones"
   map.connect 'logout', :controller => "users" ,:action => "logout"
   map.connect 'complete/:id/todo',  :controller => "todos" ,:action => "complete"
   map.connect 'incomplete/:id/todo',  :controller => "todos" ,:action => "incomplete"

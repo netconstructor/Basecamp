@@ -80,12 +80,12 @@ class ActivationsController < ApplicationController
           @activation.save!
         end  
         session[:user] = @user.id
-        redirect_to :controller => "users", :action=> "index" 
+        redirect_to :controller => "users", :action=> "show" 
     else
         
-        flash[:notice] = 'Passwrods did not match.'
+        flash[:notice] = 'Passwords did not match.'
         
-        render :template => "activations/index"
+        render :template => "activations/error"
     end
   end
   

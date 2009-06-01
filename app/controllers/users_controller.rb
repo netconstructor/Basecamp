@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  # before_filter :check_login, :except=>[:show,:login]
-  # before_filter :logged_out_user, :except=>[:index]
+   # before_filter :check_login, :only=>[:index]
+   # before_filter :logged_out_user, :only=>[:index]
   # GET /users
   # GET /users.xml
   layout 'scaffold'
@@ -33,17 +33,27 @@ class UsersController < ApplicationController
     
   end
   
+  def milestones
+    @user = User.find(session[:user])
+    @current="milestones"
+    @milestones=Milestone.list_of_already_late
+  end
+  
   def index
     
   end
   
   def login
     @credentials=params[:user]
-    if session[:user] = User.authenticate(@credentials[:username],@credentials[:password]).id
+   @user = User.authenticate(@credentials[:username],@credentials[:password])
+   if !@user.nil?
+      session[:user]=@user.id
       redirect_to :action => "show"
       flash[:notice] =="logged in"
     else
+      session[:user]=0
       flash[:notice] =="logged out"
+      redirect_to :action => "index"
     end
     
   end

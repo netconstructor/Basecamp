@@ -1,6 +1,6 @@
 class AddProjStatusToProj < ActiveRecord::Migration
   def self.up
-    add_column :projs, :proj_status, :string, :default => "Initalised"
+    add_column :projs, :proj_status, :string, :default => "Initialised"
   end
 
   def self.down
