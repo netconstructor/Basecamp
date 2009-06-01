@@ -10,10 +10,14 @@
 <body>
 	<% if !session[:user].nil? &&  session[:user]!=0 %>
 	<div id="Header">
-		<div class="PageHeaderLinks">
-			<%=link_to "Log-out","/logout" %>
+		<div class="TopHeaderLinks">
+			<div class="TopHeaderRightLinks">
+				<%=link_to "Log-out","/logout" %>
+			</div>
+			
 		</div>
 		<h3>Welcome <%=@user.username%></h3>
+		
 		<ul id="HeaderNavigation">
 			<li <%= @current=="dashboard" ? "class='selected'" : "" %> >
 					<%=link_to "Dashboard",  {:controller => "users", :action => "show"} %>

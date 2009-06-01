@@ -108,13 +108,13 @@ class MilestonesController < ApplicationController
   
   def complete
     @milestone = Milestone.find(params[:id])
-    @todo.setcompleted
+    @milestone.setcompleted
     @proj=@milestone.proj
     @user = User.find(session[:user])
     respond_to do |format|
-      if @milestone.update_attributes()
+      if @milestone.update_attributes(params[:milestone])
         flash[:notice] = 'Milestone was successfully updated.'
-        format.html { redirect_to(proj_todolists_path(@proj)) }
+        format.html { redirect_to(proj_milestones_path(@proj)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }
@@ -125,12 +125,12 @@ class MilestonesController < ApplicationController
   def incomplete
     @milestone = Milestone.find(params[:id])
     @milestone.setnotcompleted
-    @proj=@milestone.todolist.proj
+    @proj=@milestone.proj
     @user = User.find(session[:user])
     respond_to do |format|
-      if @milestone.update_attributes()
+      if @milestone.update_attributes(params[:milestone])
         flash[:notice] = 'Milestone was successfully updated.'
-        format.html { redirect_to(proj_todolists_path(@proj)) }
+        format.html { redirect_to(proj_milestones_path(@proj)) }
         format.xml  { head :ok }
       else
         format.html { render :action => "edit" }

@@ -2694,3 +2694,88 @@ Migrating to AddRemovedToCategory (20090528104508)
   [4;35;1mSQL (1.6ms)[0m   [0mSHOW FIELDS FROM `users_projs`[0m
   [4;36;1mSQL (2.7ms)[0m   [0;1mdescribe `users_projs`[0m
   [4;35;1mSQL (0.4ms)[0m   [0mSHOW KEYS FROM `users_projs`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSET SQL_AUTO_IS_NULL=0[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (33.5ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+Migrating to CreateUsers (20090519103115)
+Migrating to CreateDepartments (20090519103151)
+Migrating to CreateTodos (20090519103200)
+Migrating to CreateMessages (20090519103207)
+Migrating to CreateAttachments (20090519103217)
+Migrating to CreateActivations (20090519105000)
+Migrating to CreateProjs (20090519131439)
+Migrating to RenameColumnProjectProjInMessage (20090519141032)
+Migrating to RenameColumnProjectProjInTodos (20090519141121)
+Migrating to CreateComments (20090519142630)
+Migrating to CreateRoles (20090520061932)
+Migrating to CreateUsersProjs (20090520095009)
+Migrating to AddEmailAddressToActivation (20090520104427)
+Migrating to AddInvitationFromUserToActivation (20090520105039)
+Migrating to AddCompletedToTodo (20090525040812)
+Migrating to CreateMilestones (20090525050236)
+Migrating to CreateTodolists (20090525080131)
+Migrating to AddTodoListIdToTodo (20090525080254)
+Migrating to ChangeAddColumnsToMessages (20090525143921)
+Migrating to AddDeleteColumnToAllTables (20090525161436)
+Migrating to CreateCategories (20090526070707)
+Migrating to AddCategoryIdToMesages (20090526071006)
+Migrating to ChangeColumnTodoText (20090526090712)
+Migrating to ChangeColumnCommentText (20090526104544)
+Migrating to AddUserIdToComments (20090526110100)
+Migrating to AddDescriptionToTodolist (20090526111643)
+Migrating to AddNameUserIdProjIdToMilestone (20090526133230)
+Migrating to AddDeadlineToMilestone (20090527120743)
+Migrating to AddCompletedToMilestone (20090527122903)
+Migrating to AddRemovedToUsersProj (20090528094514)
+Migrating to AddRemovedToCategory (20090528104508)
+Migrating to AddListOrderToTodo (20090528113745)
+  [4;35;1mSQL (31.3ms)[0m   [0mALTER TABLE `todos` ADD `list_order` int(11) DEFAULT 0[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090528113745')[0m
+Migrating to AddProjStatusToProj (20090529130835)
+  [4;35;1mSQL (8.2ms)[0m   [0mALTER TABLE `projs` ADD `proj_status` varchar(255) DEFAULT 'Initalised'[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mINSERT INTO schema_migrations (version) VALUES ('20090529130835')[0m
+  [4;35;1mSQL (0.5ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1mSELECT version FROM schema_migrations[0m
+  [4;35;1mSQL (0.4ms)[0m   [0mSHOW TABLES[0m
+  [4;36;1mSQL (4.3ms)[0m   [0;1mSHOW FIELDS FROM `activations`[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mdescribe `activations`[0m
+  [4;36;1mSQL (0.7ms)[0m   [0;1mSHOW KEYS FROM `activations`[0m
+  [4;35;1mSQL (4.2ms)[0m   [0mSHOW FIELDS FROM `attachments`[0m
+  [4;36;1mSQL (2.0ms)[0m   [0;1mdescribe `attachments`[0m
+  [4;35;1mSQL (1.6ms)[0m   [0mSHOW KEYS FROM `attachments`[0m
+  [4;36;1mSQL (35.2ms)[0m   [0;1mSHOW FIELDS FROM `categories`[0m
+  [4;35;1mSQL (2.3ms)[0m   [0mdescribe `categories`[0m
+  [4;36;1mSQL (0.3ms)[0m   [0;1mSHOW KEYS FROM `categories`[0m
+  [4;35;1mSQL (3.8ms)[0m   [0mSHOW FIELDS FROM `comments`[0m
+  [4;36;1mSQL (2.1ms)[0m   [0;1mdescribe `comments`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `comments`[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mSHOW FIELDS FROM `departments`[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mdescribe `departments`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW KEYS FROM `departments`[0m
+  [4;35;1mSQL (3.8ms)[0m   [0mSHOW FIELDS FROM `messages`[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mdescribe `messages`[0m
+  [4;35;1mSQL (0.7ms)[0m   [0mSHOW KEYS FROM `messages`[0m
+  [4;36;1mSQL (4.0ms)[0m   [0;1mSHOW FIELDS FROM `milestones`[0m
+  [4;35;1mSQL (2.0ms)[0m   [0mdescribe `milestones`[0m
+  [4;36;1mSQL (1.0ms)[0m   [0;1mSHOW KEYS FROM `milestones`[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mSHOW FIELDS FROM `projs`[0m
+  [4;36;1mSQL (2.7ms)[0m   [0;1mdescribe `projs`[0m
+  [4;35;1mSQL (0.3ms)[0m   [0mSHOW KEYS FROM `projs`[0m
+  [4;36;1mSQL (20.2ms)[0m   [0;1mSHOW FIELDS FROM `roles`[0m
+  [4;35;1mSQL (2.6ms)[0m   [0mdescribe `roles`[0m
+  [4;36;1mSQL (0.8ms)[0m   [0;1mSHOW KEYS FROM `roles`[0m
+  [4;35;1mSQL (3.5ms)[0m   [0mSHOW FIELDS FROM `roles_users`[0m
+  [4;36;1mSQL (2.5ms)[0m   [0;1mdescribe `roles_users`[0m
+  [4;35;1mSQL (1.3ms)[0m   [0mSHOW KEYS FROM `roles_users`[0m
+  [4;36;1mSQL (3.1ms)[0m   [0;1mSHOW FIELDS FROM `todolists`[0m
+  [4;35;1mSQL (2.7ms)[0m   [0mdescribe `todolists`[0m
+  [4;36;1mSQL (0.6ms)[0m   [0;1mSHOW KEYS FROM `todolists`[0m
+  [4;35;1mSQL (1.9ms)[0m   [0mSHOW FIELDS FROM `todos`[0m
+  [4;36;1mSQL (2.4ms)[0m   [0;1mdescribe `todos`[0m
+  [4;35;1mSQL (0.8ms)[0m   [0mSHOW KEYS FROM `todos`[0m
+  [4;36;1mSQL (3.2ms)[0m   [0;1mSHOW FIELDS FROM `users`[0m
+  [4;35;1mSQL (2.7ms)[0m   [0mdescribe `users`[0m
+  [4;36;1mSQL (1.5ms)[0m   [0;1mSHOW KEYS FROM `users`[0m
+  [4;35;1mSQL (24.5ms)[0m   [0mSHOW FIELDS FROM `users_projs`[0m
+  [4;36;1mSQL (2.6ms)[0m   [0;1mdescribe `users_projs`[0m
+  [4;35;1mSQL (1.0ms)[0m   [0mSHOW KEYS FROM `users_projs`[0m

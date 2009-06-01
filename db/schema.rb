@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090528104508) do
+ActiveRecord::Schema.define(:version => 20090529130835) do
 
   create_table "activations", :force => true do |t|
     t.integer  "user_id"
@@ -84,7 +84,8 @@ ActiveRecord::Schema.define(:version => 20090528104508) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "removed",    :default => false
+    t.boolean  "removed",     :default => false
+    t.string   "proj_status", :default => "Initalised"
   end
 
   create_table "roles", :force => true do |t|
@@ -120,6 +121,7 @@ ActiveRecord::Schema.define(:version => 20090528104508) do
     t.integer  "todolist_id"
     t.string   "completed",   :default => "not_completed"
     t.boolean  "removed",     :default => false
+    t.integer  "list_order",  :default => 0
   end
 
   create_table "users", :force => true do |t|

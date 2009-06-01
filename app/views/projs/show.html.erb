@@ -6,13 +6,17 @@
 				<%= link_to "New to-do list", new_proj_todolist_path(@proj),:class=>"Standout" %>
 			</div>
 		  <h4>
-		    Project overview & activity
+		    Project overview &amp; activity
 		  </h4>
 		</div>
 	<div class="PageContent">
-		<%=@items.inspect%>
 		<table border="0" cellspacing="5" cellpadding="5">
-		
+			<% @todos.each do |todo| %>
+			<tr><td class="TodoTd">To-Do</td><td class="ItemVal"><%= todo.iscompleted ? "<del>" : "" %> <%= todo.todo_text %> <%= todo.iscompleted ? "</del>" : "" %>&nbsp;(<%= link_to todo.todolist.name, proj_todolist_path(todo.todolist.proj,todo.todolist),:class=>"GreyLink"%>)</td><td class="ItemStatus">
+				<%= todo.iscompleted ? "completed by": "assigned to" %>
+				
+			</td><td class="ItemUser"><%=todo.user.username%></td><td class="ItemDate"><%= todo.updated_at.strftime('%d %b') %></td></tr>
+			<% end %>
 		</table>
 	</div>
 	

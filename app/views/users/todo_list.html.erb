@@ -7,19 +7,26 @@
 				</h4>
 			</div>
 			<div class="PageContent">
+			<% if @user.has_all_completed_todos %>	
+				There are no to-dos assigned to you.<br>
+
+				Choose another person with the pulldown to the right.
+			<% end%>
+				
 				<% @projects.each do |project|%>
-				 	<% if project.todolists.size != 0 %>
+				 	<% if !@user.has_all_completed_todos %>
+					
 					<div class="TodoList">
 						<h4><%= link_to project.name, proj_path(project)%></h4>
 						<% project.todolists.each do |todolist|%>
-						<% if todolist.todos.size !=0 %>
+						<% if @user.incomplete_todos(todolist).size !=0 %>
 						<table border="0" class="TodolistTable" cellspacing="0" cellpadding="0">
 							<tr>
-								<td class="TodolistNameColumn"><%= link_to todolist.name, proj_todolist_path(project,todolist)%></td>
-								<td>
+								<td class="TodolistLeftColumn"><%= link_to todolist.name, proj_todolist_path(project,todolist)%></td>
+								<td class="TodolistRightColumn">
 									<ul>
-										<%  todolist.todos.find(:all,:conditions=>{:user_id=>@user.id}).each do |todo| %>
-											<li><%=todo.todo_text%></li>
+										<%  @user.incomplete_todos(todolist).each do |todo| %>
+											<li><%= check_box( 'TodoCheckBox_'+todo.id.to_s,"",:onclick=>"window.location='"+$relative_path+"complete/"+todo.id.to_s+"/todo'") %><%=todo.todo_text%></li>
 										<%   end %>
 									</ul>
 								</td>

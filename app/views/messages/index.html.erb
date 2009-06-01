@@ -14,7 +14,7 @@
 <% end %>
 <% @messages.each do |message| %>
 <div>
-	<span class='Date'><%=message.created_at%></span><br><br>
+	<span class='Date'><%=message.created_at.strftime('%A, %d %B %Y')%></span><br><br>
 	
 	<h2><%= link_to message.title, proj_message_path(@proj,message), :class=>"Title" %></h2>
 	<div><%=message.body%></div>
@@ -34,7 +34,7 @@
 		<% else %>
 			<%= link_to message.comments.size.to_s+" comments", proj_message_path(@proj,message),:class=>"Black" %>
 		<% end %>
-	</div>
+	</div><br><br>
 </div><br><br>
 	
 <% end %>

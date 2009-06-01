@@ -13,6 +13,13 @@ class Todo < ActiveRecord::Base
   validates_presence_of :proj_id
   validates_presence_of :user_id
   
+  def iscompleted
+    if self.completed=="completed"
+      return true
+    else
+      return false
+    end
+  end
   
   
   aasm_column :completed

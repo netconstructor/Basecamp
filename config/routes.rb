@@ -91,6 +91,8 @@ ActionController::Routing::Routes.draw do |map|
   map.connect 'logout', :controller => "users" ,:action => "logout"
   map.connect 'complete/:id/todo',  :controller => "todos" ,:action => "complete"
   map.connect 'incomplete/:id/todo',  :controller => "todos" ,:action => "incomplete"
+  map.connect 'complete/:id/milestone',  :controller => "milestones" ,:action => "complete"
+  map.connect 'incomplete/:id/milestone',  :controller => "milestones" ,:action => "incomplete"
   map.connect 'proj_todo_list', :controller => "proj" ,:action => "todo_list"
   map.connect 'proj_messages_list', :controller => "proj" ,:action => "messages_list"
   map.connect ':controller/:action/:id'

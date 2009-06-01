@@ -16,6 +16,7 @@ class ProjsController < ApplicationController
     @current="overview"
     @proj = Proj.find(params[:id])
     @proj_non_users=User.list_of_users_not_in_proj(@proj)
+    @todos =@proj.list_todos
     @list_users = User.list_of_users
     @user = User.find(session[:user])
     respond_to do |format|

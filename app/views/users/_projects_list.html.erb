@@ -4,7 +4,7 @@
 	<% projects.each do |project| %>
 	
 	<li>
-		<%= link_to project.name, :controller => "projs", :action => "show", :id => project.id %>
+		<%= link_to project.name, proj_path(project),:class=>"BlueLink"  %>
 	</li>
 	
 	<% end %>

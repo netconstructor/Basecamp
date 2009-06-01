@@ -1,6 +1,7 @@
 
 class Proj < ActiveRecord::Base
-
+  include AASM
+  
   has_many :messages
   has_many :todolists
   has_many :todos
@@ -17,10 +18,26 @@ class Proj < ActiveRecord::Base
     errors.add(:user_id, "user with such id doesnt exist") if  (!User.find(self.user_id))
   end
   
+  def has_all_completed_todos
+    iscompleted = true
+    self.todolists.each do |todolist| 
+      if !todolist.iscompleted
+        iscompleted = false
+        break
+      end
+    end
+    return iscompleted
+  end
+  
+  def incomplete_todolists_of_an_user(user)
+    
+  end
+  
   def self.items
     items=[]
     Proj.list_todos.each do |todo|
-      temp_obj=Item.new(:id=>todo.id)
+      temp_obj=Item.new
+      temp_obj.id=todo.id
       items << temp_obj
     end
     return items
@@ -29,7 +46,9 @@ class Proj < ActiveRecord::Base
   def list_todos
     todos=[]
     self.todolists.each do |todolist|
-      todos + todolist.todos
+      todolist.todos.each do |todo|
+        todos << todo
+      end
     end
     return todos
   end
@@ -53,5 +72,25 @@ class Proj < ActiveRecord::Base
     userproj=UsersProj.new({:proj_id=>proj_id,:user_id=>user_id})
     userproj.save
   end
+  
+  
+  aasm_column :proj_status
+  aasm_initial_state :Initialised
+  
+  aasm_state :Initialised
+  aasm_state :Inprocess
+  aasm_state :Finished
+  
+  aasm_event :setinprocess do
+    transitions :to => :Inprocess, :from => [:Initialised]
+  end
+  
+  aasm_event :setfinished do
+    transitions :to => :Finished, :from => [:Inprocess]
+  end
+  
+  
+  
+  
   
 end

@@ -1,5 +1,6 @@
 <center>
 	<div class="Login">
+		<div id="Flash" class="FlashNotice">Please log in first and then we'll send you right along.</div>
 		<%
 			@user=User.new
 			form_for :user, @user, :url=>{:action => "login"} do |f|
@@ -8,7 +9,7 @@
 		<%= f.text_field :username%><br>
 		<%= f.label "Password"%><br>
 		<%= f.password_field :password%><br><br>
-		<%= submit_tag 'Login' %>
+		<%= submit_tag 'Sign in' %>
 		
 		<%end%>
 	</div>

@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   
   has_many :projs
   has_many :todolists
+  has_many :todos
   has_many :messages
   has_many :milestones
   has_many :comments
@@ -49,6 +50,19 @@ class User < ActiveRecord::Base
     end
     return projs
   end
+  
+  def has_all_completed_todos
+    if self.todos.incomplete_todo.size==0
+      return true
+    else
+      return false
+    end
+  end
+  
+  def incomplete_todos(todolist)
+    return self.todos.incomplete_todo.find(:all,:conditions=>{:todolist_id=>todolist.id })
+  end
+  
   def self.list_of_users
     users=[]
     User.find(:all).each do |user|
