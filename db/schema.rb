@@ -45,8 +45,8 @@ ActiveRecord::Schema.define(:version => 20090529130835) do
     t.text     "comment_text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id"
     t.boolean  "removed",      :default => false
+    t.integer  "user_id"
   end
 
   create_table "departments", :force => true do |t|
@@ -64,19 +64,19 @@ ActiveRecord::Schema.define(:version => 20090529130835) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.text     "body"
-    t.integer  "category_id"
     t.boolean  "removed",     :default => false
+    t.integer  "category_id"
   end
 
   create_table "milestones", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "removed",    :default => false
     t.string   "name"
     t.integer  "user_id"
     t.integer  "proj_id"
     t.date     "deadline"
     t.string   "completed",  :default => "not_completed"
-    t.boolean  "removed",    :default => false
   end
 
   create_table "projs", :force => true do |t|
@@ -85,7 +85,7 @@ ActiveRecord::Schema.define(:version => 20090529130835) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "removed",     :default => false
-    t.string   "proj_status", :default => "Initalised"
+    t.string   "proj_status", :default => "Initialised"
   end
 
   create_table "roles", :force => true do |t|
@@ -108,8 +108,8 @@ ActiveRecord::Schema.define(:version => 20090529130835) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.text     "description"
     t.boolean  "removed",     :default => false
+    t.text     "description"
   end
 
   create_table "todos", :force => true do |t|
@@ -118,8 +118,8 @@ ActiveRecord::Schema.define(:version => 20090529130835) do
     t.text     "todo_text"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "todolist_id"
     t.string   "completed",   :default => "not_completed"
+    t.integer  "todolist_id"
     t.boolean  "removed",     :default => false
     t.integer  "list_order",  :default => 0
   end

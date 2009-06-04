@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
-  # before_filter :check_login, :except=>[:show,:login]
-  # before_filter :logged_out_user, :except=>[:index]
+   # before_filter :check_login, :only=>[:index]
+   # before_filter :logged_out_user, :only=>[:index]
   # GET /users
   # GET /users.xml
   layout 'scaffold'
@@ -12,6 +12,31 @@ class UsersController < ApplicationController
       format.xml  { render :xml => @users }
     end
   end
+
+  def install
+   
+  end
+
+  def create_admin
+	
+     @user = User.new(params[:user])
+     @user.username = "admin"
+     @user.admin="admin"
+     
+     respond_to do |format|
+      if @user.save
+        flash[:notice] = 'Admin was successfully created.'
+        format.html { redirect_to(@user) }
+        format.xml  { render :xml => @user, :status => :created, :location => @user }
+      else
+        format.html { render :action => "install" }
+        format.xml  { render :xml => @user.errors, :status => :unprocessable_entity }
+      end
+    end
+	
+  end
+
+
 
   # GET /users/1
   # GET /users/1.xml
@@ -33,17 +58,27 @@ class UsersController < ApplicationController
     
   end
   
+  def milestones
+    @user = User.find(session[:user])
+    @current="milestones"
+    @milestones=Milestone.list_of_already_late
+  end
+  
   def index
     
   end
   
   def login
     @credentials=params[:user]
-    if session[:user] = User.authenticate(@credentials[:username],@credentials[:password]).id
+   @user = User.authenticate(@credentials[:username],@credentials[:password])
+   if !@user.nil?
+      session[:user]=@user.id
       redirect_to :action => "show"
       flash[:notice] =="logged in"
     else
+      session[:user]=0
       flash[:notice] =="logged out"
+      redirect_to :action => "index"
     end
     
   end

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :mailfetches
+
   map.resources :categories
 
   map.resources :todolists
@@ -88,7 +90,9 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "users" ,:action => "index"
   map.connect 'invalid_activation', :controller => "activations" ,:action => "invalid_activation"
   map.connect 'todo_list', :controller => "users" ,:action => "todo_list"
+  map.connect 'allmilestones', :controller => "users" ,:action => "milestones"
   map.connect 'logout', :controller => "users" ,:action => "logout"
+  map.connect 'install', :controller => "users" ,:action => "install"
   map.connect 'complete/:id/todo',  :controller => "todos" ,:action => "complete"
   map.connect 'incomplete/:id/todo',  :controller => "todos" ,:action => "incomplete"
   map.connect 'complete/:id/milestone',  :controller => "milestones" ,:action => "complete"

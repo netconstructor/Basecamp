@@ -23,6 +23,7 @@
 					<%=link_to "Dashboard",  {:controller => "users", :action => "show"} %>
 			</li>
 			<li <%= @current=="todos" ? "class='selected'" : "" %>><%=link_to "To-Dos",{:controller => "todo_list", :action => "index"} %></li>
+			<li <%= @current=="milestones" ? "class='selected'" : "" %>><%=link_to "Milestones",{:controller => "allmilestones", :action => "index"} %></li>
 		</ul>
 	</div>
 	<% end %>

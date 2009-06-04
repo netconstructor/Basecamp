@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
     @proj=Proj.find(params[:proj_id])
     @messages = @proj.messages.all
     @current="messages"
-    @user=User.find(session[:user])
+    @user=User.find(User.find(session[:user]))
     respond_to do |format|
       format.html # index.html.erb
       format.xml  { render :xml => @messages }
@@ -19,7 +19,7 @@ class MessagesController < ApplicationController
     @message = Message.find(params[:id])
     @proj=Proj.find(params[:proj_id])
     @current="messages"
-    @user=User.find(session[:user])
+    @user=User.find(User.find(session[:user]))
     respond_to do |format|
       format.html # show.html.erb
       format.xml  { render :xml => @message }
@@ -32,7 +32,7 @@ class MessagesController < ApplicationController
     @message = Message.new
     @proj=Proj.find(params[:proj_id])
     @current="messages"
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       format.html # new.html.erb
       format.xml  { render :xml => @message }
@@ -43,7 +43,7 @@ class MessagesController < ApplicationController
   def edit
     @proj=Proj.find(params[:proj_id])
     @current="messages"
-    @user=session[:user]
+    @user=User.find(session[:user])
     @message = Message.find(params[:id])
   end
 
@@ -54,7 +54,7 @@ class MessagesController < ApplicationController
     parameters=params[:message]
     @proj=Proj.find(parameters[:proj_id])
     @current="messages"
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       if @message.save
         flash[:notice] = 'Message was successfully created.'
@@ -75,7 +75,7 @@ class MessagesController < ApplicationController
     parameters=params[:message]
     @proj=Proj.find(parameters[:proj_id])
     @current="messages"
-    @user=session[:user]
+    @user=User.find(session[:user])
     respond_to do |format|
       if @message.update_attributes(params[:message])
         flash[:notice] = 'Message was successfully updated.'

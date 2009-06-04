@@ -12,8 +12,8 @@
 						Projects
 					</div>
 					<ul>
-						<% @user.milestones.list_of_already_late.each do |milestone| %>
-							<li>&nbsp;<b class="Late"><%=Date.today- milestone.deadline%> days late</b>: <%=  milestone.name %> [ <%=milestone.proj.name%> | <%=milestone.user.username%>]</li>
+						<% @user.list_projects.each do |proj| %>
+							<li><%=link_to proj.name, proj_path(proj)%> - <%=proj.proj_status%></li>
 						<% end %>
 					</ul>
 				</div><br><br>

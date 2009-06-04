@@ -7,6 +7,7 @@
   <title><%= @PageTitle %></title>
   <%= stylesheet_link_tag 'scaffold' %>
   <%= javascript_include_tag 'jquery', :cache => true %>
+  <%= javascript_include_tag 'basecamp/initialise', :cache => true %>
 </head>
 <body>
 	<% if !session[:user].nil? %>
@@ -32,7 +33,7 @@
 		</ul>
 	</div>
 	<% end %>
-<p style="color: green"><%= flash[:notice] %></p>
+<p id="FlashNotice"style="color: green"><%= flash[:notice] %></p>
 <div class="Page">
 <%= yield %>
 </div>

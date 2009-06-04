@@ -4,7 +4,7 @@ set :user, "root"
 
 
 set :scm, :git
-set :repository, "git@github.com:deepu/apply.git"
+set :repository, "git@github.com:ganga/Basecamp.git"
 set :scm_username, "deepu"
 set :branch, "master"
 set :use_sudo, false
