@@ -1,0 +1,12 @@
+<h1>Editing mailfetch</h1>
+
+<% form_for(@mailfetch) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Update' %>
+  </p>
+<% end %>
+
+<%= link_to 'Show', @mailfetch %> |
+<%= link_to 'Back', mailfetches_path %>

@@ -1,0 +1,22 @@
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="FirstColumn">
+			<div class="PageHeader">
+				<h4>
+					Everyone's milestones across all projects
+				</h4>
+			</div>
+			<div class="PageContent">
+				<div class="Late">Late Milestones</div>
+				<hr class="RedHr">
+				<ul>
+					<% @milestones.each do |milestone| %>
+						<li>&nbsp;<b class="Late"><%=Date.today- milestone.deadline%> days late</b>: <%=  milestone.name %> [ <%=milestone.proj.name%> | <%=milestone.user.username%>]</li>
+					<% end %>
+				</ul>
+			</div>
+		</td>
+		<td class="SecondColumn">
+		</td>
+	</tr>
+</table>

@@ -1,0 +1,11 @@
+<h1>New mailfetch</h1>
+
+<% form_for(@mailfetch) do |f| %>
+  <%= f.error_messages %>
+
+  <p>
+    <%= f.submit 'Create' %>
+  </p>
+<% end %>
+
+<%= link_to 'Back', mailfetches_path %>

@@ -1,0 +1,2 @@
+module MailfetchesHelper
+end

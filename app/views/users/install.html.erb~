@@ -1,0 +1,17 @@
+<center>
+	<div class="Login">
+		<div id="Flash" class="FlashNotice">Please provide password to create admin account.</div>
+		<%
+			@user=User.new
+			form_for :user, @user, :url=>{:action => "create_admin"} do |f|
+		%>
+		<b>admin</b><br> 
+		<%= f.label "Password"%><br>
+		<%= f.password_field :password%><br>
+                <%= f.label "Confirm Password"%><br>
+		<%= f.password_field :confirm_password%><br><br>
+		<%= submit_tag 'Create admin' %>
+		
+		<%end%>
+	</div>
+</center>
