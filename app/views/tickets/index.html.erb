@@ -1,0 +1,40 @@
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr>
+		<td class="FirstColumn">
+			<div class="PageHeader">
+				 <h4>Tickets <h4>
+</div>
+<div class="PageContent">
+	 <% if @tickets.size==0 %>
+	        <div class="BlankBar">
+        	      <h1><%= link_to "Create the first ticket for this project", new_proj_ticket_path(@proj),:class=>"Standout" %></h1>
+	              <p>Keep track of what's due, and who's responsible for doing it.</p>
+        	 </div>
+        <% end %>
+	<table>
+	      <% @tickets.each do |ticket| %>
+		<tr>
+		    <td>
+			<%= link_to ticket.title, proj_ticket_path(@proj,ticket) %>			
+		    </td>
+		    <td class="GreyText">
+			<%= status_msg(ticket.status)%>
+			
+		    </td>
+		    <td>
+			<%= ticket.created_by_user %>
+		    </td>
+		   
+		    
+		</tr>
+	     <% end %>
+	</table>
+
+</div>
+</td>
+
+<td class="SecondColumn">
+	<%= link_to "Create a ticket", new_proj_ticket_path(@proj)%>
+</td>
+</tr>
+</table>

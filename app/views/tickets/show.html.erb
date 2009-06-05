@@ -1,0 +1,21 @@
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr>
+		<td class="FirstColumn">
+			<div class="PageHeader">
+			<div class="PageHeaderLinks">
+                                <%= link_to "Edit this ticket", edit_proj_ticket_path(@proj,@ticket),:class=>"Standout" %>
+                        </div>
+
+				 <h4> <%= link_to "<< All tickets", proj_tickets_path(@proj) %> </h4>
+</div>
+<div class="PageContent">
+	<b><%= @ticket.title %></b><br>
+	Reported by <%= @ticket.created_by_user %><br>
+	<span class="GreyText"><%= @ticket.ticket_desc %></span>
+</div>
+</td>
+
+<td class="SecondColumn">
+</td>
+</tr>
+</table>

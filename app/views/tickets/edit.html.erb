@@ -1,0 +1,41 @@
+<%= javascript_include_tag 'ui.core' %>
+<%= javascript_include_tag 'jquery.datePicker' %>
+<%= javascript_include_tag 'basecamp/tickets' %>
+
+<%= stylesheet_link_tag 'datePicker' %>
+<%= stylesheet_link_tag 'ui.theme' %>
+<table border="0" cellspacing="0" cellpadding="0" >
+	<tr><td class="FirstColumn">
+	
+
+<div class="PageHeader">
+	<div class="PageHeaderLinks">
+                <%= link_to "Delete this ticket",proj_ticket_path(@proj,@ticket), :confirm => 'Are you sure?', :method => :delete%>
+        </div>
+	<h4>Tickets</h4>
+</div>
+<div class="PageContent">
+				<% form_for(@ticket) do |f| %>
+				  <%= f.error_messages %>
+					Enter a title<br>
+					<%= f.text_field :title,:class=>"LargeTextBox" %><br><br>
+					<%= f.text_area :ticket_desc %><br><br>
+					who is responsible?<br>
+					<%= select("ticket","user_id",@proj.members_list.collect{|p|[p.username,p.id]},{:include_blank => 'None'})%><br><br>
+					Milestone<br>
+						
+					<% if !@milestones.blank? %>
+						<%= select("ticket","milestone_id",@milestones.collect{|p|[p.name,p.id]},{:include_blank => 'None'})%>
+					<% end %>
+					<%= f.hidden_field :created_by, :value => @user.id %>
+					<%= f.hidden_field :proj_id, :value=>@proj.id %>
+		
+				  <p>
+				    <%= f.submit 'Update' %> or <%= link_to "Cancel", proj_tickets_path(@proj),:class=>"Standout"%>
+				  </p>
+				<% end %>
+	
+</div>
+</td>
+</tr>
+</table>
