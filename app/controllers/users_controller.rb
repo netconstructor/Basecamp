@@ -68,6 +68,7 @@ class UsersController < ApplicationController
     @user = User.find(session[:user])
     @current="tickets"
   end
+
   def index
     
   end
