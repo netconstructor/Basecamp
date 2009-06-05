@@ -5,6 +5,7 @@ class Proj < ActiveRecord::Base
   has_many :messages
   has_many :todolists
   has_many :todos
+  has_many :tickets
   belongs_to :user
   has_many :users_projs
   has_many :milestones

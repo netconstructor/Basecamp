@@ -24,6 +24,7 @@
 			</li>
 			<li <%= @current=="todos" ? "class='selected'" : "" %>><%=link_to "To-Dos",{:controller => "todo_list", :action => "index"} %></li>
 			<li <%= @current=="milestones" ? "class='selected'" : "" %>><%=link_to "Milestones",{:controller => "allmilestones", :action => "index"} %></li>
+			<li <%= @current=="tickets" ? "class='selected'" : "" %>><%=link_to "Tickets",{:controller => "alltickets", :action => "index"} %></li>
 		</ul>
 	</div>
 	<% end %>

@@ -1,4 +1,6 @@
 ActionController::Routing::Routes.draw do |map|
+  map.resources :tickets
+
   map.resources :mailfetches
 
   map.resources :categories
@@ -22,6 +24,7 @@ ActionController::Routing::Routes.draw do |map|
     proj.resources :todolists 
     proj.resources :messages
     proj.resources :milestones
+    proj.resources :tickets
     proj.resources :categories do |category|
       category.resources :messages
     end
@@ -90,6 +93,7 @@ ActionController::Routing::Routes.draw do |map|
   map.root :controller => "users" ,:action => "index"
   map.connect 'invalid_activation', :controller => "activations" ,:action => "invalid_activation"
   map.connect 'todo_list', :controller => "users" ,:action => "todo_list"
+  map.connect 'alltickets', :controller => "users" ,:action => "tickets"
   map.connect 'allmilestones', :controller => "users" ,:action => "milestones"
   map.connect 'logout', :controller => "users" ,:action => "logout"
   map.connect 'install', :controller => "users" ,:action => "install"

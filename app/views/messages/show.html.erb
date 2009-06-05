@@ -3,6 +3,10 @@
 	
 
 <div class="PageHeader">
+<div class="PageHeaderLinks">
+                                <%= link_to "Edit this message", edit_proj_message_path(@proj,@message),:class=>"Standout" %>
+</div>
+
 <h4><%=link_to "<< All messages", proj_messages_path(@proj)%></h4>
 </div>
 <div class="PageContent">

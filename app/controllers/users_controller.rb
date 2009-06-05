@@ -64,6 +64,10 @@ class UsersController < ApplicationController
     @milestones=Milestone.list_of_already_late
   end
   
+  def tickets
+    @user = User.find(session[:user])
+    @current="tickets"
+  end
   def index
     
   end

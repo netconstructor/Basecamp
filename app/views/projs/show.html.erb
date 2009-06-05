@@ -3,7 +3,9 @@
 		<div class="PageHeader">
 			<div class="PageHeaderLinks">
 				<%= link_to "New message", new_proj_message_path(@proj),:class=>"Standout" %>&nbsp; | &nbsp;
-				<%= link_to "New to-do list", new_proj_todolist_path(@proj),:class=>"Standout" %>
+				<%= link_to "New to-do list", new_proj_todolist_path(@proj),:class=>"Standout" %>&nbsp; | &nbsp;
+				<%= link_to "New milestone", new_proj_milestone_path(@proj),:class=>"Standout" %>&nbsp; | &nbsp;
+				<%= link_to "New ticket", new_proj_ticket_path(@proj),:class=>"Standout" %>
 			</div>
 		  <h4>
 		    Project overview &amp; activity

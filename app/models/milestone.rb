@@ -3,6 +3,11 @@ class Milestone < ActiveRecord::Base
   
   belongs_to :proj
   belongs_to :user
+  has_many :todos
+  has_many :messages
+  has_many :comments
+  has_many :tickets
+
   
   
   

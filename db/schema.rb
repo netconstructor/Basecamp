@@ -9,7 +9,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20090529130835) do
+ActiveRecord::Schema.define(:version => 20090605080243) do
 
   create_table "activations", :force => true do |t|
     t.integer  "user_id"
@@ -57,6 +57,11 @@ ActiveRecord::Schema.define(:version => 20090529130835) do
     t.boolean  "removed",    :default => false
   end
 
+  create_table "mailfetches", :force => true do |t|
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "messages", :force => true do |t|
     t.integer  "user_id"
     t.integer  "proj_id"
@@ -101,6 +106,19 @@ ActiveRecord::Schema.define(:version => 20090529130835) do
     t.integer  "role_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "tickets", :force => true do |t|
+    t.integer  "proj_id"
+    t.integer  "user_id"
+    t.integer  "created_by"
+    t.text     "ticket_desc"
+    t.integer  "milestone_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.boolean  "removed",      :default => false
+    t.string   "title"
+    t.string   "status",       :default => "New"
   end
 
   create_table "todolists", :force => true do |t|

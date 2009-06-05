@@ -30,6 +30,7 @@
 			<li <%= @current=="messages" ? "class='selected'" : "" %>><%=link_to "Messages",proj_messages_path(@proj) %></li>
 			<li <%= @current=="todos" ? "class='selected'" : "" %>><%=link_to "To-Dos",proj_todolists_path(@proj) %></li>
 			<li <%= @current=="milestones" ? "class='selected'" : "" %>><%=link_to "Milestones",proj_milestones_path(@proj) %></li>
+			<li <%= @current=="tickets" ? "class='selected'" : "" %>><%=link_to "Tickets",proj_tickets_path(@proj) %></li>
 		</ul>
 	</div>
 	<% end %>
