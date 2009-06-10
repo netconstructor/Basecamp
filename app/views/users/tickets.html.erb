@@ -1,0 +1,33 @@
+<table border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td class="FirstColumn">
+			<div class="PageHeader">
+				<h4>
+					<%= @user.username%>'s milestones across all projects
+				</h4>
+			</div>
+			<div class="PageContent">
+			<table>
+			     <% @tickets.each do |ticket| %>
+                	<tr>
+                   	 <td>
+                        	<%= link_to ticket.title, proj_ticket_path(ticket.proj,ticket) %>                     
+                    	</td>
+                    	<td class="GreyText">
+                        	<%= status_msg(ticket.status)%>
+                        
+                    	</td>
+                    	<td>
+                        	<%= ticket.created_by_user %>
+                   	 </td>
+                	</tr>
+            		 <% end %>
+        		</table>
+		</div>
+		</td>
+		<td class="SecondColumn">
+			Show tickets of <br>
+                        <%= select("user","id",@users.collect{|p|[p.username,p.id]})%>
+		</td>
+	</tr>
+</table>

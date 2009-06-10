@@ -69,7 +69,7 @@ class ActivationsController < ApplicationController
     @activation=params[:activation]
     @activation_string=@activation[:activation_number]
     @activation=Activation.find_by_activation_number(@activation_string)
-    if @user_params[:password]!="" && @user_params[:password]==params[:confirm_password]
+    if !@user_params[:password].empty? && @user_params[:password]==params[:confirm_password]
         @user=User.new(params[:user])
         
         Activation.transaction do

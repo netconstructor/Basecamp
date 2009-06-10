@@ -1,2 +1,0 @@
-      exists  db/migrate
-      create  db/migrate/20090527122903_add_completed_to_milestone.rb

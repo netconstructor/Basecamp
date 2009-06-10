@@ -23,7 +23,7 @@
 		<div>
 			<% @milestones_late.each do |milestone| %>
 		 		<div>
-					<%= check_box( 'MilestoneCheckBox_'+milestone.id.to_s,"",:onclick=>"window.location='"+$relative_path+"complete/"+milestone.id.to_s+"/milestone'") %><b class="Late"><%=Date.today- milestone.deadline%> days ago</b>(<%=milestone.deadline.strftime('%d %b')%>)&nbsp;<%=milestone.user.username%><br>
+					<%= check_box( 'MilestoneCheckBox_'+milestone.id.to_s,"",true, :onclick=>"window.location='"+$relative_path+"complete/"+milestone.id.to_s+"/milestone'") %><b class="Late"><%=Date.today- milestone.deadline%> days ago</b>(<%=milestone.deadline.strftime('%d %b')%>)&nbsp;<%=milestone.user.username%><br>
 					<%=milestone.name%><br>
 				</div><br>
 			<% end %>
@@ -51,8 +51,8 @@
 		<div>
 			<% @milestones_completed.each do |milestone| %>
 			<div>
-				<%= check_box( 'MilestoneCheckBox_'+milestone.id.to_s,"",:onclick=>"window.location='"+$relative_path+"incomplete/"+milestone.id.to_s+"/milestone'") %><b><%=milestone.created_at%></b>&nbsp;<%=milestone.user.username%><br>
-				<%=milestone.name%>
+				<%= check_box( 'MilestoneCheckBox_'+milestone.id.to_s,"",{:onclick=>"window.location='"+$relative_path+"incomplete/"+milestone.id.to_s+"/milestone'", :checked => "checked"}) %><del><b><%=milestone.deadline%></b>&nbsp;<%=milestone.user.username%></del><br>
+				<del><%=milestone.name%></del>
 			</div><br>
 		 		
 			<% end %>

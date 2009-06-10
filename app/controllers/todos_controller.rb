@@ -46,8 +46,8 @@ class TodosController < ApplicationController
   # POST /todos.xml
   def create
     @todo = Todo.new(params[:todo])
-    parameters=params[:todo]
-    @proj=Proj.find(parameters[:proj_id])
+    @proj=@todo.proj
+    @user = User.find(session[:user])
     respond_to do |format|
       if @todo.save
         flash[:notice] = 'Todo was successfully created.'

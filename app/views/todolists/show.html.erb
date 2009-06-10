@@ -16,7 +16,7 @@
 			<% @todolist.todos.each do |todo| %>
 				<li class="TodoLi" id="TodoLi_<%= todo.id %>">
 					<div id="Todo_<%= todo.id %>" class="Todo">
-						<span id="TodoLinksSet_<%= todo.id %>" class="TodoLinksSet"><%= link_to image_tag("trash.gif",:border=>0), todolist_todo_path(@todolist,todo), :confirm => 'Are you sure?', :method => :delete %>&nbsp;<%= link_to_function "edit", "EditTodo('"+todo.id.to_s+"')" %></span>&nbsp;<b><%=todo.user.username%>:</b>&nbsp;<%=todo.todo_text%>
+						<span id="TodoLinksSet_<%= todo.id %>" class="TodoLinksSet"><%= link_to image_tag("trash.gif",:border=>0), todolist_todo_path(@todolist,todo), :confirm => 'Are you sure?', :method => :delete %>&nbsp;<%= link_to_function "edit", "EditTodo('"+todo.id.to_s+"')" %></span>&nbsp;<b><%=todo.user.blank? ? "" :  todo.user.username + ":" %></b>&nbsp;<%=todo.todo_text%>
 					</div>
 					<div id="EditTodoForm_<%=todo.id%>" class="EditTodoForm">
 			    		<% 

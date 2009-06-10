@@ -7,7 +7,7 @@
 				<%= link_to_function "edit", "EditTodo('"+todo.id.to_s+"')",:class=>"Standout" %>&nbsp;<%= image_tag "drag_handle.gif", :class=>"handle"%></span>&nbsp;
 				
 				<%= check_box( 'TodoCheckBox_'+todo.id.to_s,"",:onclick=>"window.location='"+$relative_path+"complete/"+todo.id.to_s+"/todo'") %>
-				<b><%=todo.user.username%>:</b>&nbsp;
+				<b><%=todo.user.blank? ? "" : todo.user.username + ":" %></b>&nbsp;
 				<%=todo.todo_text%>
 			</div>
 				

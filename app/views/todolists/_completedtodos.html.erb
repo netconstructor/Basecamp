@@ -3,7 +3,7 @@
 		<li>
 				<%= link_to image_tag("trash.gif",:border=>0), todolist_todo_path(todolist,todo), :confirm => 'Are you sure?', :method => :delete %>&nbsp;
 				<%= check_box_tag 'TodoCheckBox_'+todo.id.to_s,"",true, :onclick=>"window.location='"+$relative_path+"incomplete/"+todo.id.to_s+"/todo'" %>&nbsp;<del><%=todo.updated_at.strftime('%d %b')%>
-				<b><%=todo.user.username%>:</b>&nbsp;
+				<b><%=todo.user.blank? ? "" :  todo.user.username + ":" %></b>&nbsp;
 				<%=todo.todo_text%></del>
 		</li>
 	<% end %>

@@ -9,6 +9,7 @@ class User < ActiveRecord::Base
   has_many :projs
   has_many :todolists
   has_many :todos
+  has_many :tickets
   has_many :messages
   has_many :milestones
   has_many :comments

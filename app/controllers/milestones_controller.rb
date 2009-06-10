@@ -12,9 +12,8 @@ class MilestonesController < ApplicationController
     @milestones_upcoming= @proj.milestones.list_of_upcoming
     @current="milestones"
     
-    
-    
-		@cal = Icalendar::Calendar.new
+#    cal_file = File.open("/single_event.ics")
+    @cal = Icalendar::Calendar.new
     event = Icalendar::Event.new
     event.start = Date.today
     event.end = Date.today

@@ -66,6 +66,8 @@ class UsersController < ApplicationController
   
   def tickets
     @user = User.find(session[:user])
+    @users = User.all
+    @tickets = @user.tickets.all
     @current="tickets"
   end
 

@@ -41,7 +41,7 @@
 					<%=f.hidden_field :proj_id, :value=> @proj.id %>
 					<%=f.hidden_field :todolist_id, :value=> todolist.id %><br>
 					Who's responsible?<br>
-					<%=select("todo", "user_id", @list_users.collect {|p| [ p.username, p.id ] })%><br><br>
+					<%=select("todo", "user_id", @list_users.collect {|p| [ p.username, p.id ] })%><span id="TodoNotify"><%= check_box_tag 'notify',"",true %>&nbsp;notify by email</span><br><br>
 				    <%= f.submit 'Add this item' %> or <%= link_to_function "I'm done adding items", "HideAddTodoForm('"+todolist.id.to_s+"')",:class=>"Standout" %>
 				<% end %>
 			</div>

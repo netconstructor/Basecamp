@@ -11,7 +11,7 @@ class Todo < ActiveRecord::Base
   
   
   validates_presence_of :proj_id
-  validates_presence_of :user_id
+#  validates_presence_of :user_id
   
   def iscompleted
     if self.completed=="completed"
@@ -37,6 +37,14 @@ class Todo < ActiveRecord::Base
   end
   
   protected
+
+  before_create :nouser
+
+  def nouser
+	if self.user.blank?
+	   self.user_id=0;
+        end
+  end
   
   
 end

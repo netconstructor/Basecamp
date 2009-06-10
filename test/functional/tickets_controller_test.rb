@@ -7,7 +7,7 @@ class TicketsControllerTest < ActionController::TestCase
     assert_not_nil assigns(:tickets)
   end
 
-  test "should get new" do
+  def should_get_new 
     get :new
     assert_response :success
   end

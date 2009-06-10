@@ -40,7 +40,7 @@
 								<tr><td class="TodoTd">To-Do</td><td class="ItemVal"><%= todo.iscompleted ? "<del>" : "" %> <%= todo.todo_text %> <%= todo.iscompleted ? "</del>" : "" %>&nbsp;(<%= link_to todo.todolist.name, proj_todolist_path(proj,todo.todolist),:class=>"GreyLink"%>)</td><td class="ItemStatus">
 									<%= todo.iscompleted ? "completed by": "assigned to" %>
 									
-								</td><td class="ItemUser"><%=todo.user.username%></td><td class="ItemDate"><%= todo.updated_at.strftime('%d %b') %></td></tr>
+								</td><td class="ItemUser"><%=todo.user.blank? ? "" : todo.user.username%></td><td class="ItemDate"><%= todo.updated_at.strftime('%d %b') %></td></tr>
 							<% end %>
 							<% proj.milestones.each do |milestone| %>
 								<tr><td class="MilestoneTd">Milestone</td><td class="ItemVal"><%= milestone.iscompleted ? "<del>" : "" %> <%= milestone.name %> <%= milestone.iscompleted ? "</del>" : "( Due " + milestone.deadline.strftime('%d %b') + ")" %></td><td class="ItemStatus">
