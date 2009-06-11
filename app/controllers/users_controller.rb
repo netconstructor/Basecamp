@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-   # before_filter :check_login, :only=>[:index]
+    before_filter :isloggedout, :except=>[:index, :login]
    # before_filter :logged_out_user, :only=>[:index]
   # GET /users
   # GET /users.xml
@@ -159,14 +159,11 @@ class UsersController < ApplicationController
   
   
   private
-  def check_login
-    if !session[:user].nil? && session[:user]!=0
-      redirect_to :action => "show"
-    end
-  end
-  def logged_out_user
-    if !session[:user].nil? || session[:user]==0
-      redirect_to :action => "index"
-    end
-  end
+
+def isloggedout
+        if session[:user].blank? || session[:user]==0
+                redirect_to :controller => "users", :action => "index"
+        end
+end
+
 end
