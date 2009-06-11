@@ -1,5 +1,6 @@
 require 'icalendar'
 class MilestonesController < ApplicationController
+   before_filter :isloggedout
   # GET /milestones
   # GET /milestones.xml
   layout 'projs'
@@ -137,6 +138,13 @@ class MilestonesController < ApplicationController
       end
     end
   end
-  
+
+private
+
+def isloggedout
+	if session[:user].blank? || session[:user]==0 
+		redirect_to :controller => "users", :action => "index"
+	end
+end
   
 end

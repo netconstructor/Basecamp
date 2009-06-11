@@ -1,6 +1,7 @@
 class TicketsController < ApplicationController
   # GET /tickets
   # GET /tickets.xml
+before_filter :isloggedout
   layout 'projs'
   def index
     @user=User.find(session[:user])
@@ -104,4 +105,13 @@ class TicketsController < ApplicationController
       format.xml  { head :ok }
     end
   end
+
+private
+
+def isloggedout
+        if session[:user].blank? || session[:user]==0
+                redirect_to :controller => "users", :action => "index"
+        end
+end
+
 end

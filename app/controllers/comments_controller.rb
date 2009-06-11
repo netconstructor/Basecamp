@@ -1,8 +1,7 @@
 class CommentsController < ApplicationController
   # GET /comments
   # GET /comments.xml
-  before_filter :check_login
-  before_filter :logged_out_user
+  before_filter :isloggedout
   def index
     @comments = Comment.all
 
@@ -103,5 +102,14 @@ class CommentsController < ApplicationController
       redirect_to :action => "index", :controller => "users"
     end
   end
+
+private
+
+def isloggedout
+        if session[:user].blank? || session[:user]==0
+                redirect_to :controller => "users", :action => "index"
+        end
+end
+
   
 end

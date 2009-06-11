@@ -1,6 +1,7 @@
 class TodolistsController < ApplicationController
   # GET /todolists
   # GET /todolists.xml
+before_filter :isloggedout
   
   layout 'projs'
   def index
@@ -108,4 +109,13 @@ class TodolistsController < ApplicationController
       redirect_to :action => "index", :controller => "users"
     end
   end
+
+private
+
+def isloggedout
+        if session[:user].blank? || session[:user]==0
+                redirect_to :controller => "users", :action => "index"
+        end
+end
+
 end

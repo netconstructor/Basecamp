@@ -1,6 +1,7 @@
 class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.xml
+  before_filter :isloggedout
   layout 'projs'
   def index
     @proj=Proj.find(params[:proj_id])
@@ -100,4 +101,12 @@ class MessagesController < ApplicationController
       format.xml  { head :ok }
     end
   end
+private
+
+def isloggedout
+        if session[:user].blank? || session[:user]==0
+                redirect_to :controller => "users", :action => "index"
+        end
+end
+
 end
