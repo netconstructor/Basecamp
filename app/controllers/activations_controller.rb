@@ -78,7 +78,8 @@ class ActivationsController < ApplicationController
           @activation.user_id=@user.id
           @activation.active
           @activation.save!
-        end  
+        end
+        Activation_mailer.deliver_user_activation()
         session[:user] = @user.id
         redirect_to :controller => "users", :action=> "show" 
     else
