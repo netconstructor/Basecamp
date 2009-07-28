@@ -6,6 +6,10 @@ $(document).ready(function(){
            month = "0"+month;
         }
         var day = currentTime.getDate()
+        if(day<10)
+        {
+           day = "0"+day;
+        }
         var year = currentTime.getFullYear()
         $("#MilestoneDate").html( day + "/" + month + "/" + year)
 
