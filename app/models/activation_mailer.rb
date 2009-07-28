@@ -4,6 +4,6 @@ class ActivationMailer < ActionMailer::Base
          from "Basecamp <notifications@pagalguy.com>"
          subject "Basecamp Activation Link"  
          sent_on Time.now 
-         body {:activation => activation} 
+         body :activation => activation 
     end
 end
