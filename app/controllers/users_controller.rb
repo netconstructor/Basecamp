@@ -85,14 +85,14 @@ class UsersController < ApplicationController
     else
       session[:user]=0
       flash[:notice] =="logged out"
-      redirect_to :action => "index"
+      redirect_to :controller => "users", :action => "index"
     end
     
   end
   
   def logout
     session[:user]=0
-    redirect_to :action => "index"
+    redirect_to :controller => "users", :action => "index"
   end
 
   # GET /users/new
