@@ -18,7 +18,7 @@
 				<%=link_to "Back to Dashboard", user_path(@user) %>
 			</div>
 			<div class="TopHeaderRightLinks">
-				<%=link_to "Log-out","/logout" %>
+				<%=link_to "Log-out",{:controller => "users", :action => "logout"} %>
 			</div>
 			
 		</div>
