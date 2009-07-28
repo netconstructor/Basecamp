@@ -11,7 +11,8 @@ $(document).ready(function(){
            day = "0"+day;
         }
         var year = currentTime.getFullYear()
-        $("#MilestoneDate").html( day + "/" + month + "/" + year)
+        $("#MilestoneDate").html( day + "/" + month + "/" + year);
+        $("#milestone_deadline").val( day + "/" + month + "/" + year);
 
 	$("#datepicker").datepicker({
 		dateFormat: 'dd-mm-yy',
