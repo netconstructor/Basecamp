@@ -50,7 +50,7 @@ class TodosController < ApplicationController
     @user = User.find(session[:user])
     respond_to do |format|
       if @todo.save
-        UserNotification.deliver_todo_notification(@todo)        
+        UserNotification.deliver_todo_notify(@todo)        
         flash[:notice] = 'Todo was successfully created.'
         format.html { redirect_to(proj_todolists_path(@proj)) }
         format.xml  { render :xml => @todo, :status => :created, :location => @todo }
