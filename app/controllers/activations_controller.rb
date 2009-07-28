@@ -44,7 +44,7 @@ class ActivationsController < ApplicationController
     
     # respond_to do |format|
       if @activation.save
-        ActivationMailer.deliver_user_activation(params[:activation])
+        ActivationMailer.deliver_user_activation(@activation)
         flash[:notice] = 'Activation was successfully created.'
         redirect_to :controller=> "users", :action =>"show"
         # format.html { redirect_to(@activation) }
