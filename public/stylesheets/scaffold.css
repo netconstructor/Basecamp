@@ -146,17 +146,17 @@ input[type="text"],input[type="password"]
 {
 	
 	background-color:#FFFFFF;
-	width:100%;
+	width:960px;
 }
 .FirstColumn
 {
 	background-color:#FFFFFF;
-	width:60%;
+	width:576px;
 	vertical-align:top;
 }
 .SecondColumn
 {
-	width:20%;
+	width:192px;
 	vertical-align:top;
 	padding:2%;
 }
@@ -170,7 +170,7 @@ ul
 }
 .LargeTextBox
 {
-	width:90%;
+	width:572px;
 	padding:3px;
 	font-size:18px;
 }
@@ -189,7 +189,7 @@ ul
 .NewMessage,.NewTodolist
 {
 	background-color:#dfdfdf;
-	width:80%;
+	width:960px;
 	padding:3%;
 }
 textarea
