@@ -1,5 +1,9 @@
-class ActivationMailer < Notifier
+class ActivationMailer < ActionMailer::Base 
     def user_activation(options)
-       self.generic_options(options)
+         recipients options[:email_address]
+         from "Basecamp <notifications@example.com>"
+         subject "Basecamp Activation Link"  
+         sent_on Time.now 
+         body {} 
     end
 end
