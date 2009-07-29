@@ -45,6 +45,7 @@ class UsersProjsController < ApplicationController
     # respond_to do |format|
       if @users_projs.save
         flash[:notice] = 'user was successfully added.'
+        UserNotification.deliver_user_added_to_project_notify(@users_projs)
         redirect_to (:controller=> "users",  :action => "show" )
         # format.html { redirect_to(@users_projs) }
         # format.xml  { render :xml => @users_projs, :status => :created, :location => @users_projs }
