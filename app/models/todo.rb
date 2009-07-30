@@ -3,6 +3,7 @@ class Todo < ActiveRecord::Base
   belongs_to :proj
   belongs_to :user
   belongs_to :todolist
+
   
   named_scope :completed_todo, :conditions => {:completed => "completed"}
   named_scope :incomplete_todo, :conditions => {:completed => "not_completed"}
